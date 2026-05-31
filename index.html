@@ -4,358 +4,174 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Zoeb Izzi</title>
-  <meta name="description" content="Zoeb Izzi — [your tagline here]." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Zoeb Izzi — student, builder, researcher." />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ── Index-only: hero + nav cards ── */
+    .hero {
+      min-height: calc(100vh - var(--nav-h));
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px max(28px, 9vw) 60px;
+      max-width: 900px;
+    }
+    .hero-eyebrow {
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--accent);
+      display: flex; align-items: center; gap: 10px; margin-bottom: 22px;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: inline-block; width: 26px; height: 2px;
+      background: var(--accent); border-radius: 2px;
+    }
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.8rem, 6.5vw, 5rem);
+      font-weight: 800; line-height: 1.04; letter-spacing: -0.03em;
+      color: var(--text); margin-bottom: 26px;
+    }
+    .hero h1 .accent { color: var(--accent); }
+    .hero-bio {
+      font-size: 1.12rem; color: var(--text-muted);
+      max-width: 540px; line-height: 1.75;
+      margin-bottom: 38px; font-weight: 300;
+    }
+    .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 70px; }
+    .hint {
+      font-size: 0.7rem; color: #94A3B8; letter-spacing: 0.08em;
+      margin-top: auto;
+    }
+
+    /* ── Page nav grid ── */
+    .nav-grid-section {
+      position: relative; z-index: 1;
+      padding: 60px max(28px, 6vw) 80px;
+      max-width: 1080px; margin: 0 auto;
+    }
+    .nav-grid-label {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 28px;
+    }
+    .nav-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .nav-tile {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px 24px;
+      text-decoration: none; color: inherit;
+      display: flex; flex-direction: column; gap: 8px;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .nav-tile:hover {
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-3px);
+    }
+    .nav-tile-icon { font-size: 1.5rem; }
+    .nav-tile-name {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 1rem; color: var(--text);
+    }
+    .nav-tile-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
+    .nav-tile-arrow {
+      margin-top: 10px; font-size: 0.8rem; font-weight: 600;
+      color: var(--accent); letter-spacing: 0.04em;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Background Game Canvas -->
-  <canvas id="game-canvas"></canvas>
+  <canvas id="game-canvas" aria-hidden="true"></canvas>
 
-  <div class="site-wrapper">
+  <div id="nav-container"></div>
 
-    <!-- ===== NAV ===== -->
-    <nav>
-      <a href="index.html" class="nav-logo">Zoeb <span>Izzi</span></a>
-      <button class="hamburger" id="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#events">Events</a></li>
-        <li><a href="projects/in-progress.html">Projects</a></li>
-        <li><a href="#research">Research</a></li>
-        <li><a href="#awards">Awards</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+  <div class="page-wrapper">
 
-    <div class="page-content">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-eyebrow">Welcome</div>
+      <h1>Hi, I'm<br><span class="accent">Zoeb Izzi.</span></h1>
+      <p class="hero-bio">
+        <!-- TODO: Write 2–3 sentences. What do you build? What drives you? Where are you based? -->
+        Student · Builder · [Your field here]. Based in [Your city].
+        I work on [what you care about] and write about the process.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="pages/about.html">About me</a>
+        <a class="btn btn-ghost" href="pages/contact.html">Get in touch</a>
+      </div>
+      <p class="hint">SPACE / CLICK / TAP — play the game in the background ↓</p>
+    </section>
 
-      <!-- ===== HERO ===== -->
-      <section class="hero" id="top">
-        <div class="hero-inner">
-          <div class="hero-eyebrow">// hello world</div>
-          <h1>Zoeb <span class="accent">Izzi</span></h1>
-          <p class="hero-bio">
-            <!-- EDIT: Add your one-liner bio here. Keep it punchy. -->
-            [Your tagline — what you build, where you do it, what drives you.]
-          </p>
-          <div class="hero-cta">
-            <a href="#about" class="btn btn-primary">Learn More</a>
-            <a href="#contact" class="btn btn-secondary">Get in Touch</a>
-          </div>
-        </div>
-        <div class="scroll-hint">
-          <span>scroll</span>
-          <div class="arrow"></div>
-        </div>
-      </section>
+    <div class="divider"></div>
 
-      <!-- ===== ABOUT ===== -->
-      <section class="section reveal" id="about">
-        <div class="section-banner">
-          <h2>About</h2>
-          <div class="banner-line"></div>
-          <span class="banner-tag">whoami</span>
-        </div>
-        <div class="about-card">
-          <p>
-            <!-- EDIT: Replace with your full about paragraph. -->
-            I'm <strong>Zoeb Izzi</strong>, a [student/builder/researcher] at [your school/institution] focused on [your main interests]. I'm passionate about [what you care about] and driven by [your motivation].
-          </p>
-          <p>
-            <!-- EDIT: Second paragraph — current work, past experience, etc. -->
-            Currently, I'm working on [project or focus area]. I've previously [notable past experience or involvement]. I believe [a brief statement of your philosophy or mission].
-          </p>
-          <p>
-            <!-- EDIT: Third paragraph — anything else you want people to know. -->
-            Outside of [main work], you can find me [hobbies, interests, other activities]. I'm always open to [collaborations, conversations, opportunities].
-          </p>
-        </div>
-      </section>
+    <!-- Page nav -->
+    <div class="nav-grid-section">
+      <div class="nav-grid-label">Explore</div>
+      <div class="nav-grid">
 
-      <!-- ===== UPCOMING EVENTS ===== -->
-      <section class="section reveal" id="events">
-        <div class="section-banner">
-          <h2>Upcoming Events</h2>
-          <div class="banner-line"></div>
-          <span class="banner-tag">calendar</span>
-        </div>
-        <div class="events-list">
+        <a class="nav-tile reveal" href="pages/about.html">
+          <div class="nav-tile-icon">👤</div>
+          <div class="nav-tile-name">About</div>
+          <div class="nav-tile-desc">Who I am, where I'm from, and what I care about.</div>
+          <div class="nav-tile-arrow">Read →</div>
+        </a>
 
-          <!-- EDIT: Replace / duplicate these items with your actual events -->
-          <div class="event-item">
-            <div class="event-date">Jun 2026</div>
-            <div class="event-details">
-              <h3>Event Name Here</h3>
-              <p>Brief description — what it is, where it's happening, your role.</p>
-            </div>
-          </div>
+        <a class="nav-tile reveal" href="pages/events.html">
+          <div class="nav-tile-icon">📅</div>
+          <div class="nav-tile-name">Upcoming Events</div>
+          <div class="nav-tile-desc">Talks, competitions, and conferences I'll be at.</div>
+          <div class="nav-tile-arrow">See schedule →</div>
+        </a>
 
-          <div class="event-item">
-            <div class="event-date">Jul 2026</div>
-            <div class="event-details">
-              <h3>Another Event</h3>
-              <p>Brief description — conference, competition, talk, demo, etc.</p>
-            </div>
-          </div>
+        <a class="nav-tile reveal" href="pages/projects-progress.html">
+          <div class="nav-tile-icon">🔨</div>
+          <div class="nav-tile-name">Projects in Progress</div>
+          <div class="nav-tile-desc">What I'm actively building, with regular updates.</div>
+          <div class="nav-tile-arrow">See projects →</div>
+        </a>
 
-          <div class="event-item">
-            <div class="event-date">Aug 2026</div>
-            <div class="event-details">
-              <h3>Third Event</h3>
-              <p>Description of this event and your involvement.</p>
-            </div>
-          </div>
+        <a class="nav-tile reveal" href="pages/projects-docket.html">
+          <div class="nav-tile-icon">📋</div>
+          <div class="nav-tile-name">On the Docket</div>
+          <div class="nav-tile-desc">Ideas and projects I've queued up to start next.</div>
+          <div class="nav-tile-arrow">See the list →</div>
+        </a>
 
-        </div>
-      </section>
+        <a class="nav-tile reveal" href="pages/research.html">
+          <div class="nav-tile-icon">🔬</div>
+          <div class="nav-tile-name">Research</div>
+          <div class="nav-tile-desc">Academic work, lab collaborations, and papers.</div>
+          <div class="nav-tile-arrow">Read →</div>
+        </a>
 
-      <!-- ===== PROJECTS IN PROGRESS ===== -->
-      <section class="section reveal" id="projects-active">
-        <div class="section-banner">
-          <h2>Projects in Progress</h2>
-          <div class="banner-line"></div>
-          <span class="banner-tag">active</span>
-        </div>
-        <div class="projects-grid">
+        <a class="nav-tile reveal" href="pages/awards.html">
+          <div class="nav-tile-icon">🏆</div>
+          <div class="nav-tile-name">Awards</div>
+          <div class="nav-tile-desc">Competitions, fellowships, and recognition.</div>
+          <div class="nav-tile-arrow">See awards →</div>
+        </a>
 
-          <!-- EDIT: Replace with your actual active projects -->
-          <div class="project-card">
-            <div class="project-card-top">
-              <span class="project-status status-active">In Progress</span>
-            </div>
-            <h3>Project Alpha</h3>
-            <p>A short description of what this project is, what problem it solves, and why you're building it.</p>
-            <div class="project-tags">
-              <span class="tag">tag1</span>
-              <span class="tag">tag2</span>
-              <span class="tag">tag3</span>
-            </div>
-            <a href="projects/in-progress.html#project-alpha" class="project-link">Read more</a>
-          </div>
+        <a class="nav-tile reveal" href="pages/contact.html">
+          <div class="nav-tile-icon">✉️</div>
+          <div class="nav-tile-name">Contact</div>
+          <div class="nav-tile-desc">Want to collaborate or just say hi? Reach out.</div>
+          <div class="nav-tile-arrow">Get in touch →</div>
+        </a>
 
-          <div class="project-card">
-            <div class="project-card-top">
-              <span class="project-status status-active">In Progress</span>
-            </div>
-            <h3>Project Beta</h3>
-            <p>A short description of what this project is, what problem it solves, and why you're building it.</p>
-            <div class="project-tags">
-              <span class="tag">tag1</span>
-              <span class="tag">tag2</span>
-            </div>
-            <a href="projects/in-progress.html#project-beta" class="project-link">Read more</a>
-          </div>
+      </div>
+    </div>
 
-        </div>
-      </section>
+  </div><!-- end page-wrapper -->
 
-      <!-- ===== PROJECTS ON THE DOCKET ===== -->
-      <section class="section reveal" id="projects-docket">
-        <div class="section-banner">
-          <h2>Projects on the Docket</h2>
-          <div class="banner-line"></div>
-          <span class="banner-tag">coming soon</span>
-        </div>
-        <div class="projects-grid">
+  <div id="footer-container"></div>
 
-          <!-- EDIT: Replace with your planned/future projects -->
-          <div class="project-card">
-            <div class="project-card-top">
-              <span class="project-status status-docket">Planned</span>
-            </div>
-            <h3>Future Project One</h3>
-            <p>What you plan to build, why it excites you, and what it will accomplish when it's underway.</p>
-            <div class="project-tags">
-              <span class="tag">tag1</span>
-              <span class="tag">tag2</span>
-            </div>
-            <a href="projects/on-docket.html#future-one" class="project-link">Read more</a>
-          </div>
-
-          <div class="project-card">
-            <div class="project-card-top">
-              <span class="project-status status-docket">Planned</span>
-            </div>
-            <h3>Future Project Two</h3>
-            <p>What you plan to build, why it excites you, and what it will accomplish when it's underway.</p>
-            <div class="project-tags">
-              <span class="tag">tag1</span>
-              <span class="tag">tag2</span>
-            </div>
-            <a href="projects/on-docket.html#future-two" class="project-link">Read more</a>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- ===== RESEARCH ===== -->
-      <section class="section reveal" id="research">
-        <div class="section-banner">
-          <h2>Research</h2>
-          <div class="banner-line"></div>
-          <span class="banner-tag">publications &amp; work</span>
-        </div>
-        <div class="research-list">
-
-          <!-- EDIT: Add your research projects/papers/experiences -->
-          <div class="research-item">
-            <h3>Research Project or Paper Title</h3>
-            <div class="research-meta">
-              <span>Lab / Institution Name</span>
-              <span>Year–Present</span>
-            </div>
-            <p>Brief description of the research area, your role, what you're investigating, and any key findings or contributions.</p>
-          </div>
-
-          <div class="research-item">
-            <h3>Another Research Experience</h3>
-            <div class="research-meta">
-              <span>Lab / Institution Name</span>
-              <span>Year</span>
-            </div>
-            <p>Brief description of the work, your contributions, and what you learned or produced.</p>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- ===== AWARDS ===== -->
-      <section class="section reveal" id="awards">
-        <div class="section-banner">
-          <h2>Awards</h2>
-          <div class="banner-line"></div>
-          <span class="banner-tag">recognition</span>
-        </div>
-        <div class="awards-list">
-
-          <!-- EDIT: Replace with your actual awards. Pick relevant emoji per award. -->
-          <div class="award-item">
-            <div class="award-icon">🏆</div>
-            <div class="award-text">
-              <h3>Award Name — Competition or Organization</h3>
-              <p>Year · Brief context, placement, or scope of the award.</p>
-            </div>
-          </div>
-
-          <div class="award-item">
-            <div class="award-icon">🥇</div>
-            <div class="award-text">
-              <h3>Second Award Name</h3>
-              <p>Year · Brief context or description.</p>
-            </div>
-          </div>
-
-          <div class="award-item">
-            <div class="award-icon">🎖️</div>
-            <div class="award-text">
-              <h3>Third Award or Scholarship</h3>
-              <p>Year · Brief context or description.</p>
-            </div>
-          </div>
-
-          <div class="award-item">
-            <div class="award-icon">⭐</div>
-            <div class="award-text">
-              <h3>Fourth Recognition</h3>
-              <p>Year · Brief context or description.</p>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- ===== CONTACT ===== -->
-      <section class="section reveal" id="contact">
-        <div class="section-banner">
-          <h2>Contact</h2>
-          <div class="banner-line"></div>
-          <span class="banner-tag">reach out</span>
-        </div>
-        <div class="contact-grid">
-
-          <!-- EDIT: Replace all href values and display text with yours -->
-          <a href="mailto:your@email.com" class="contact-card">
-            <div class="contact-icon">✉️</div>
-            <div class="contact-info">
-              <h3>Email</h3>
-              <p>your@email.com</p>
-            </div>
-          </a>
-
-          <a href="https://linkedin.com/in/yourhandle" target="_blank" rel="noopener" class="contact-card">
-            <div class="contact-icon">💼</div>
-            <div class="contact-info">
-              <h3>LinkedIn</h3>
-              <p>linkedin.com/in/yourhandle</p>
-            </div>
-          </a>
-
-          <a href="https://github.com/yourhandle" target="_blank" rel="noopener" class="contact-card">
-            <div class="contact-icon">🐙</div>
-            <div class="contact-info">
-              <h3>GitHub</h3>
-              <p>github.com/yourhandle</p>
-            </div>
-          </a>
-
-          <a href="https://x.com/yourhandle" target="_blank" rel="noopener" class="contact-card">
-            <div class="contact-icon">𝕏</div>
-            <div class="contact-info">
-              <h3>X / Twitter</h3>
-              <p>@yourhandle</p>
-            </div>
-          </a>
-
-        </div>
-      </section>
-
-    </div><!-- end page-content -->
-
-    <!-- ===== FOOTER ===== -->
-    <footer>
-      <p>© 2026 Zoeb Izzi &nbsp;·&nbsp; <a href="mailto:your@email.com">your@email.com</a> &nbsp;·&nbsp; Last updated May 2026</p>
-    </footer>
-
-  </div><!-- end site-wrapper -->
-
-  <!-- Game HUD -->
-  <div class="game-controls">
-    <div class="game-score" id="game-score">Score: 0</div>
-    <button class="game-toggle" id="game-toggle">GAME: ON</button>
-  </div>
-
-  <script src="game.js"></script>
-  <script>
-    // Hamburger menu
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('nav-links');
-    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
-
-    // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    reveals.forEach(el => observer.observe(el));
-
-    // Active nav link highlight
-    const sections = document.querySelectorAll('section[id]');
-    const navAnchors = document.querySelectorAll('.nav-links a');
-    window.addEventListener('scroll', () => {
-      let current = '';
-      sections.forEach(s => {
-        if (window.scrollY >= s.offsetTop - 80) current = s.id;
-      });
-      navAnchors.forEach(a => {
-        a.classList.toggle('active', a.getAttribute('href') === `#${current}`);
-      });
-    });
-  </script>
+  <script src="js/site.js"></script>
+  <script src="js/game.js"></script>
 </body>
 </html>

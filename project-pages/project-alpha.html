@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Alpha — Zoeb Izzi</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .project-hero { padding: 60px max(24px, 7vw) 48px; max-width: 820px; margin: 0 auto; }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      text-decoration: none; color: var(--text-muted);
+      font-size: 0.85rem; font-weight: 500; margin-bottom: 32px;
+      transition: color 0.18s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .project-eyebrow { margin-bottom: 14px; }
+    .project-hero h1 {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: clamp(1.9rem, 4vw, 3.1rem); letter-spacing: -0.03em;
+      line-height: 1.1; margin-bottom: 18px;
+    }
+    .project-meta { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px; }
+    .project-summary {
+      font-size: 1.08rem; color: var(--text-muted); line-height: 1.75;
+      font-weight: 300; border-left: 3px solid var(--accent);
+      padding-left: 18px; margin-bottom: 28px;
+    }
+    .project-links { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    /* Blog posts */
+    .updates-section { max-width: 820px; margin: 0 auto; padding: 0 max(24px, 7vw) 80px; }
+    .updates-header {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 1.2rem; margin-bottom: 28px;
+      padding-bottom: 12px; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .updates-count {
+      font-size: 0.78rem; font-weight: 600; color: var(--text-muted);
+      letter-spacing: 0.06em;
+    }
+    .blog-post {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 32px 34px;
+      margin-bottom: 18px; transition: border-color 0.2s;
+    }
+    .blog-post:hover { border-color: var(--border-hover); }
+    .blog-post-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
+    .blog-post-title {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 1.1rem; color: var(--text);
+    }
+    .blog-post-date {
+      font-size: 0.75rem; font-weight: 600; color: var(--text-muted);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      background: var(--bg); padding: 4px 10px; border-radius: 6px;
+    }
+    .blog-post-body { font-size: 0.95rem; color: var(--text-muted); line-height: 1.75; }
+    .blog-post-body p { margin-bottom: 14px; }
+    .blog-post-body p:last-child { margin-bottom: 0; }
+    .blog-post-body h4 {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 0.92rem; color: var(--text); margin: 20px 0 8px;
+    }
+    .blog-post-body ul { padding-left: 20px; margin-bottom: 14px; }
+    .blog-post-body li { margin-bottom: 5px; }
+
+    /* Placeholder */
+    .post-placeholder {
+      border: 2px dashed var(--border); border-radius: var(--radius);
+      padding: 40px; text-align: center; color: var(--text-muted);
+    }
+    .post-placeholder .ph-icon { font-size: 2rem; margin-bottom: 12px; }
+    .post-placeholder h3 {
+      font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem;
+      margin-bottom: 8px; color: var(--text);
+    }
+    .post-placeholder p { font-size: 0.88rem; line-height: 1.6; }
+  </style>
+</head>
+<body>
+
+  <canvas id="game-canvas" aria-hidden="true"></canvas>
+  <div id="nav-container"></div>
+
+  <div class="page-wrapper">
+    <div class="project-hero reveal">
+      <a class="back-link" href="../pages/projects-progress.html">← Back to Projects in Progress</a>
+
+      <div class="project-eyebrow">
+        <div class="card-tag">🔨 Active</div>
+      </div>
+
+      <h1><!-- TODO: Project name --></h1>
+
+      <div class="project-meta">
+        <span class="meta-pill"><!-- TODO: Tag e.g. Machine Learning --></span>
+        <span class="meta-pill"><!-- TODO: Tag e.g. Python --></span>
+        <span class="meta-pill"><!-- TODO: Tag e.g. Started Jan 2025 --></span>
+      </div>
+
+      <p class="project-summary">
+        <!-- TODO: 2–3 sentence elevator pitch. What is this? What problem does it solve?
+             Why does it matter? This shows in the pull-quote style on the left. -->
+      </p>
+
+      <div class="project-links">
+        <!-- Add/remove links as needed -->
+        <a class="btn btn-primary" href="#" target="_blank" rel="noopener">💻 GitHub</a>
+        <a class="btn btn-ghost"   href="#" target="_blank" rel="noopener">🌐 Live Demo</a>
+        <a class="btn btn-ghost"   href="#" target="_blank" rel="noopener">📄 Paper</a>
+      </div>
+    </div>
+
+    <!-- ── Blog / Update Posts ───────────────────────────────
+         Add a new .blog-post div for each update you write.
+         Most recent post should be FIRST (top of the list).
+         Copy the template block below and fill it in.
+    ──────────────────────────────────────────────────────── -->
+    <div class="updates-section">
+      <div class="updates-header">
+        Project Updates
+        <span class="updates-count"><!-- e.g. 3 posts --></span>
+      </div>
+
+      <!-- ── POST TEMPLATE — copy and fill in ── -->
+      <!--
+      <div class="blog-post reveal">
+        <div class="blog-post-header">
+          <div class="blog-post-title">Post title here</div>
+          <div class="blog-post-date">Month DD, YYYY</div>
+        </div>
+        <div class="blog-post-body">
+          <p>Your update text here. Write in whatever style you like — casual, technical, reflective.</p>
+          <h4>What I did this week</h4>
+          <ul>
+            <li>Bullet point one</li>
+            <li>Bullet point two</li>
+          </ul>
+          <p>Closing thoughts, next steps, etc.</p>
+        </div>
+      </div>
+      -->
+
+      <!-- Placeholder shown until you write your first post -->
+      <div class="post-placeholder reveal">
+        <div class="ph-icon">✍️</div>
+        <h3>No posts yet — check back soon</h3>
+        <p>
+          When you're ready to write your first update, copy the post template from the HTML
+          comments above, paste it here, and fill it in. Delete this placeholder block when you do.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="footer-container"></div>
+  <script src="../js/site.js"></script>
+  <script src="../js/game.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<footer id="site-footer">
+  <div class="footer-left">
+    <div class="footer-name">Zoeb Izzi</div>
+    <div class="footer-copy">© <span class="footer-year"></span> Zoeb Izzi · All rights reserved</div>
+  </div>
+  <div class="footer-links">
+    <a href="mailto:your@email.com" title="Email">✉️</a>
+    <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener" title="LinkedIn">💼</a>
+    <a href="https://github.com/yourhandle" target="_blank" rel="noopener" title="GitHub">💻</a>
+    <a href="https://x.com/yourhandle" target="_blank" rel="noopener" title="X / Twitter">𝕏</a>
+  </div>
+</footer>
+<script>
+  document.querySelectorAll('.footer-year').forEach(el => el.textContent = new Date().getFullYear());
+</script>

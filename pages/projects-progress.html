@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects in Progress — Zoeb Izzi</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .proj-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      margin-bottom: 20px;
+    }
+    .proj-card-top {
+      display: flex; justify-content: space-between;
+      align-items: flex-start; flex-wrap: wrap; gap: 14px; margin-bottom: 18px;
+    }
+    .proj-title {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: 1.35rem; letter-spacing: -0.02em; margin-top: 8px;
+    }
+    .proj-desc {
+      color: var(--text-muted); font-size: 0.95rem; line-height: 1.7;
+      max-width: 640px; margin-bottom: 18px;
+    }
+    .proj-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+    .proj-update {
+      padding: 16px; background: var(--bg);
+      border-radius: 8px; border: 1px solid var(--border);
+    }
+    .proj-update-label {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 6px;
+    }
+    .proj-update p { font-size: 0.88rem; color: var(--text-muted); }
+
+    .tab-toggle {
+      display: flex; gap: 8px; margin-bottom: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="game-canvas" aria-hidden="true"></canvas>
+  <div id="nav-container"></div>
+
+  <div class="page-wrapper">
+    <section class="section" style="padding-top: 60px;">
+
+      <div class="section-header reveal">
+        <div class="section-label">Projects</div>
+        <h1 class="section-title">Projects in Progress</h1>
+        <p class="section-sub">Everything I'm actively building. Click any project to read updates.</p>
+      </div>
+
+      <div class="tab-toggle">
+        <a class="btn btn-primary" href="projects-progress.html">🔨 In Progress</a>
+        <a class="btn btn-ghost"   href="projects-docket.html">📋 On the Docket</a>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════
+           PROJECT CARD — copy this block for each project.
+           Link href should point to the matching project page.
+           ══════════════════════════════════════════════════ -->
+
+      <div class="proj-card reveal" id="project-alpha">
+        <div class="proj-card-top">
+          <div>
+            <div class="card-tag">🔨 Active</div>
+            <div class="proj-title"><!-- TODO: Project name --></div>
+          </div>
+          <a class="btn btn-primary" href="../project-pages/project-alpha.html">View Project →</a>
+        </div>
+        <p class="proj-desc">
+          <!-- TODO: 2–3 sentence description. What is it? Who's it for? What's the core challenge? -->
+        </p>
+        <div class="proj-tags">
+          <span class="meta-pill"><!-- TODO: Tag --></span>
+          <span class="meta-pill"><!-- TODO: Tag --></span>
+        </div>
+        <div class="proj-update">
+          <div class="proj-update-label">Latest Update</div>
+          <p><!-- TODO: One-liner on where things stand right now --></p>
+        </div>
+      </div>
+
+      <div class="proj-card reveal" id="project-beta">
+        <div class="proj-card-top">
+          <div>
+            <div class="card-tag">🔨 Active</div>
+            <div class="proj-title"><!-- TODO: Project name --></div>
+          </div>
+          <a class="btn btn-primary" href="../project-pages/project-beta.html">View Project →</a>
+        </div>
+        <p class="proj-desc">
+          <!-- TODO: Description -->
+        </p>
+        <div class="proj-tags">
+          <span class="meta-pill"><!-- TODO: Tag --></span>
+        </div>
+        <div class="proj-update">
+          <div class="proj-update-label">Latest Update</div>
+          <p><!-- TODO: Latest update --></p>
+        </div>
+      </div>
+
+      <!-- Add more project cards here by copying the block above.
+           For each new project, also create a matching page in /project-pages/.
+           Use project-alpha.html as a template. -->
+
+    </section>
+  </div>
+
+  <div id="footer-container"></div>
+  <script src="../js/site.js"></script>
+  <script src="../js/game.js"></script>
+</body>
+</html>

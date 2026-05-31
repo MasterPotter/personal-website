@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Research — Zoeb Izzi</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .research-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 30px 32px;
+      margin-bottom: 18px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .research-card:hover { border-color: var(--border-hover); box-shadow: var(--shadow-md); }
+    .research-card-top {
+      display: flex; justify-content: space-between;
+      align-items: flex-start; gap: 16px; flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+    .research-title {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 1.05rem; color: var(--text);
+    }
+    .research-org {
+      font-size: 0.82rem; color: var(--text-muted); margin-top: 4px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .research-dates {
+      font-size: 0.78rem; font-weight: 600; color: var(--accent);
+      background: var(--accent-soft); padding: 4px 10px;
+      border-radius: 20px; white-space: nowrap;
+    }
+    .research-desc { font-size: 0.92rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 16px; }
+    .research-links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .research-link {
+      font-size: 0.8rem; font-weight: 600; color: var(--accent);
+      text-decoration: none; display: flex; align-items: center; gap: 5px;
+      padding: 5px 12px; border: 1px solid var(--border-hover);
+      border-radius: 8px; transition: background 0.18s;
+    }
+    .research-link:hover { background: var(--accent-soft); }
+
+    .section-break {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--text-muted);
+      margin: 44px 0 22px; padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="game-canvas" aria-hidden="true"></canvas>
+  <div id="nav-container"></div>
+
+  <div class="page-wrapper">
+    <section class="section" style="padding-top: 60px;">
+
+      <div class="section-header reveal">
+        <div class="section-label">Research</div>
+        <h1 class="section-title">Academic &amp; Lab Work</h1>
+        <p class="section-sub">Research positions, collaborations, and publications.</p>
+      </div>
+
+      <!-- ── Research Positions ── -->
+      <div class="section-break reveal">Research Positions</div>
+
+      <!-- Copy this card for each lab / research role -->
+      <div class="research-card reveal">
+        <div class="research-card-top">
+          <div>
+            <div class="research-title"><!-- TODO: Lab / project name --></div>
+            <div class="research-org">
+              🏛️ <!-- TODO: Institution name --> &nbsp;·&nbsp; <!-- TODO: Advisor / PI name, if applicable -->
+            </div>
+          </div>
+          <span class="research-dates"><!-- TODO: e.g. Jun 2024 – Present --></span>
+        </div>
+        <p class="research-desc">
+          <!-- TODO: What did you work on? What methods, datasets, or questions?
+               What was produced — a paper, a model, a system, a report? -->
+        </p>
+        <div class="research-links">
+          <!-- Add links as needed: paper, code, poster, etc. Remove unused ones. -->
+          <a class="research-link" href="#">📄 Paper</a>
+          <a class="research-link" href="#">💻 Code</a>
+          <a class="research-link" href="#">📊 Poster</a>
+        </div>
+      </div>
+
+      <div class="research-card reveal">
+        <div class="research-card-top">
+          <div>
+            <div class="research-title"><!-- TODO: Lab / project name --></div>
+            <div class="research-org">🏛️ <!-- TODO: Institution --></div>
+          </div>
+          <span class="research-dates"><!-- TODO: Dates --></span>
+        </div>
+        <p class="research-desc"><!-- TODO: Description --></p>
+        <div class="research-links">
+          <a class="research-link" href="#">📄 Paper</a>
+        </div>
+      </div>
+
+      <!-- ── Programs & Summer Research ── -->
+      <div class="section-break reveal">Programs &amp; Summer Research</div>
+
+      <div class="research-card reveal">
+        <div class="research-card-top">
+          <div>
+            <div class="research-title"><!-- TODO: Program name (e.g. RSI, PRIMES, SURP) --></div>
+            <div class="research-org">🏛️ <!-- TODO: Institution --></div>
+          </div>
+          <span class="research-dates"><!-- TODO: Summer YYYY --></span>
+        </div>
+        <p class="research-desc"><!-- TODO: What did you study / build? With whom? What was the output? --></p>
+        <div class="research-links">
+          <a class="research-link" href="#">📄 Report</a>
+        </div>
+      </div>
+
+    </section>
+  </div>
+
+  <div id="footer-container"></div>
+  <script src="../js/site.js"></script>
+  <script src="../js/game.js"></script>
+</body>
+</html>

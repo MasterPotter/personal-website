@@ -1,158 +1,117 @@
-# Zoeb Izzi — Personal Site
+# Zoeb Izzi — Personal Website
 
-A clean, multi-page personal website with a Geometry Dash–style background game, built with plain HTML/CSS/JS (no frameworks, no build tools — just open the files).
-
----
-
-## Folder Structure
+## Structure
 
 ```
-zoeb-site/
-├── index.html              ← Main page (About, Events, Projects preview, Research, Awards, Contact)
-├── style.css               ← All styles (shared across every page)
-├── game.js                 ← GD-style background game
-├── README.md               ← This file
-└── projects/
-    ├── in-progress.html    ← Projects in Progress (with blog posts)
-    └── on-docket.html      ← Projects on the Docket (with planning notes)
+zoeb-izzi-site/
+├── index.html                   ← Homepage (hero + page nav grid)
+├── css/
+│   └── style.css                ← All global styles + CSS variables
+├── js/
+│   ├── site.js                  ← Shared nav/footer loader, reveal animations
+│   └── game.js                  ← Geometry Dash-style background game
+├── templates/
+│   ├── nav.html                 ← Shared navigation (loaded by fetch)
+│   └── footer.html              ← Shared footer (loaded by fetch)
+├── pages/
+│   ├── about.html
+│   ├── events.html
+│   ├── projects-progress.html
+│   ├── projects-docket.html
+│   ├── research.html
+│   ├── awards.html
+│   └── contact.html
+└── project-pages/
+    ├── project-alpha.html       ← Template for active projects
+    ├── project-beta.html
+    ├── docket-one.html          ← Template for planned projects
+    └── docket-two.html
 ```
 
 ---
 
-## How to Edit — Quick Reference
+## How to Preview Locally
 
-Every section you need to change is marked with `<!-- EDIT: ... -->` comments in the HTML.
+The nav and footer load via `fetch()`, which requires a local web server
+(browsers block fetch on `file://` for security reasons).
 
-### index.html
+**Option 1 — Python (easiest):**
+```bash
+cd zoeb-izzi-site
+python3 -m http.server 8000
+# Open http://localhost:8000
+```
 
-| Section | What to change |
-|---|---|
-| `<title>` & meta | Your name / tagline for browser tabs & search |
-| Hero | Your tagline in `.hero-bio` |
-| About | 3 paragraphs about yourself |
-| Upcoming Events | `.event-item` blocks — date, name, description |
-| Projects in Progress | Card title, description, tags, and link |
-| Projects on the Docket | Same as above but for planned projects |
-| Research | `.research-item` blocks — title, institution, year, description |
-| Awards | `.award-item` blocks — emoji, award name, year, context |
-| Contact | Your actual email and social links |
-| Footer | Your email |
+**Option 2 — Node:**
+```bash
+npx serve zoeb-izzi-site
+```
+
+**Option 3 — VS Code:**
+Install the "Live Server" extension → right-click `index.html` → Open with Live Server.
 
 ---
 
-### Adding / Editing Projects
+## Deploying
 
-Each project lives on its own section of `projects/in-progress.html` or `projects/on-docket.html`.
+This is a plain static site. Upload the whole folder to any of these:
 
-**The project card on `index.html`** links to the project via an anchor, e.g.:
+- **GitHub Pages** — push to a repo, enable Pages in settings
+- **Netlify** — drag the folder into netlify.com/drop
+- **Vercel** — `vercel deploy` from the folder
+- **Any shared host** — FTP the contents to `public_html/`
+
+No build step. No dependencies. Just HTML, CSS, and JS.
+
+---
+
+## Admin: Common Tasks
+
+### Add a new page
+1. Copy any existing page in `/pages/` as a starting point.
+2. Link to it from `index.html` (add a `.nav-tile`) and `templates/nav.html`.
+3. Fill in the content.
+
+### Add a new active project
+1. Add a `.proj-card` block to `pages/projects-progress.html`.
+2. Duplicate `project-pages/project-alpha.html`, rename it (e.g. `project-gamma.html`).
+3. Update the "View Project →" link in the listing card to point to the new file.
+4. Fill in the project details and write updates as blog posts.
+
+### Write a project update (blog post)
+1. Open the relevant file in `project-pages/`.
+2. Copy the commented-out `<!-- POST TEMPLATE -->` block.
+3. Paste it above the existing posts (newest first).
+4. Fill in the title, date, and body content.
+5. Delete the placeholder block if it's still there.
+
+### Change color scheme
+All colors are CSS variables in `css/style.css` under `:root { }`.
+Change `--accent` to update the main color everywhere at once.
+
+### Connect the contact form
+Sign up at https://formspree.io, create a new form, then in `pages/contact.html`:
 ```html
-<a href="projects/in-progress.html#project-alpha" class="project-link">Read more</a>
+<form id="contact-form" action="https://formspree.io/f/YOUR_ID" method="POST">
 ```
+Remove the `e.preventDefault()` line in `js/site.js` once connected.
 
-**The project section on `in-progress.html`** has a matching `id`, e.g.:
-```html
-<div id="project-alpha" ...>
-```
-
-To add a new project:
-1. Add a card to `index.html` (copy an existing `.project-card` block)
-2. On `in-progress.html`, copy an existing project `<div id="...">` block and paste it after the last `<hr>`
-3. Match the `id` in both files
+### Update nav or footer
+Edit `templates/nav.html` or `templates/footer.html` — changes apply to every page.
 
 ---
 
-### Writing Blog Posts / Update Posts
+## Background Game Controls
 
-Inside each project section on `in-progress.html` or `on-docket.html`, add posts like this:
+The Geometry Dash-style game runs in the background of every page.
 
-```html
-<div class="blog-post">
-  <div class="blog-post-meta">
-    <span class="blog-date">June 2026</span>
-    <span class="blog-post-label">Update #2</span>
-  </div>
-  <h3>Your Post Title</h3>
-  <p>Your post content here. Write as much as you want.</p>
-</div>
-```
+| Action         | Controls               |
+|----------------|------------------------|
+| Jump (cube)    | Space / Click / Tap    |
+| Hold (ship)    | Hold Space / Hold Click|
+| Wave mode      | Hold to go up          |
+| Respawn        | Click after death      |
 
-**Put the newest post at the top** (above older ones).
-
-When a project has no posts yet, use the empty state placeholder:
-```html
-<div class="blog-empty">
-  <div class="empty-icon">✍️</div>
-  <p>No updates yet — check back soon.</p>
-</div>
-```
-Replace it with your first `blog-post` div when you're ready.
-
----
-
-### Adding Multiple Paragraphs to a Blog Post
-
-Wrap each paragraph in its own `<p>` tag:
-
-```html
-<div class="blog-post">
-  ...
-  <p>First paragraph here.</p>
-  <p>Second paragraph here.</p>
-  <p>Third paragraph here.</p>
-</div>
-```
-
----
-
-## The Background Game
-
-A Geometry Dash–style cube runner runs silently behind the site at ~18% opacity.
-
-- **Jump**: Spacebar, Up Arrow, or click anywhere on the page
-- **Toggle**: Use the "GAME: ON/OFF" button in the bottom-right corner
-- **Score**: Shown in bottom-right; resets on death (auto-restarts after 2 seconds)
-- Speed increases gradually as your score climbs
-
----
-
-## Hosting
-
-This is a static site — no server needed. Upload the entire `zoeb-site/` folder as-is to any of these:
-
-| Platform | How |
-|---|---|
-| **GitHub Pages** | Push to a repo, enable Pages in Settings → Pages |
-| **Netlify** | Drag-and-drop the folder at app.netlify.com |
-| **Vercel** | `vercel deploy` from the folder, or drag-and-drop |
-| **Cloudflare Pages** | Connect repo or upload via dashboard |
-
-Make sure the folder root (where `index.html` lives) is set as the publish directory.
-
----
-
-## Customizing Colors
-
-All colors are CSS variables at the top of `style.css`. To swap the accent from indigo to something else:
-
-```css
-:root {
-  --accent: #6366F1;        /* Main accent — change this */
-  --accent-hover: #4F46E5;  /* Slightly darker version */
-  --accent-soft: #EEF2FF;   /* Very light tint for backgrounds */
-}
-```
-
----
-
-## Fonts
-
-The site uses Google Fonts (loaded from CDN):
-- **DM Serif Display** — headings
-- **DM Sans** — body text
-- **JetBrains Mono** — tags, labels, code elements
-
-These load automatically when the site is online. For offline preview, they'll fall back to Georgia / system-ui / monospace.
-
----
-
-Good luck with the site, Zoeb!
+Modes cycle automatically: **CUBE → SHIP → WAVE → BALL**, with occasional reversed sections.
+The game is purely decorative — opacity is set low so it doesn't distract.
+To adjust opacity: find `#game-canvas { opacity: 0.14; }` in `style.css`.

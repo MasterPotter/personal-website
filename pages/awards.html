@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Awards — Zoeb Izzi</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .award-year-group { margin-bottom: 44px; }
+    .award-year-label {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: 1.1rem; color: var(--text); margin-bottom: 16px;
+      padding-bottom: 10px; border-bottom: 1px solid var(--border);
+    }
+    .award-item {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 20px 24px;
+      display: flex; align-items: flex-start; gap: 18px;
+      margin-bottom: 12px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .award-item:hover { border-color: var(--border-hover); box-shadow: var(--shadow-sm); }
+    .award-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 1px; }
+    .award-body { flex: 1; }
+    .award-name {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 0.98rem; margin-bottom: 4px; color: var(--text);
+    }
+    .award-meta { font-size: 0.83rem; color: var(--text-muted); margin-bottom: 5px; }
+    .award-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; }
+    .award-tier {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 4px 9px;
+      border-radius: 20px; white-space: nowrap; align-self: flex-start;
+      flex-shrink: 0;
+    }
+    .tier-gold     { background: #FEF9C3; color: #A16207; }
+    .tier-silver   { background: #F1F5F9; color: #475569; }
+    .tier-finalist { background: var(--accent-soft); color: var(--accent); }
+    .tier-honor    { background: #FDF2F8; color: #9D174D; }
+  </style>
+</head>
+<body>
+
+  <canvas id="game-canvas" aria-hidden="true"></canvas>
+  <div id="nav-container"></div>
+
+  <div class="page-wrapper">
+    <section class="section" style="padding-top: 60px;">
+
+      <div class="section-header reveal">
+        <div class="section-label">Awards</div>
+        <h1 class="section-title">Recognition</h1>
+        <p class="section-sub">Competitions, fellowships, and honors — organized by year.</p>
+      </div>
+
+      <!-- ══════════════════════════════════════════════════
+           AWARDS — grouped by year.
+           Tier classes: tier-gold / tier-silver / tier-finalist / tier-honor
+           Emoji icons: 🏆 🥇 🥈 🥉 🎖️ ⭐ 🎗️ 📜
+           ══════════════════════════════════════════════════ -->
+
+      <div class="award-year-group reveal">
+        <div class="award-year-label"><!-- TODO: Year e.g. 2025 --></div>
+
+        <div class="award-item">
+          <div class="award-icon">🏆</div>
+          <div class="award-body">
+            <div class="award-name"><!-- TODO: Award name --></div>
+            <div class="award-meta"><!-- TODO: Competition / organization name --></div>
+            <div class="award-desc"><!-- TODO: Brief context — what was it for, what did you submit/present? --></div>
+          </div>
+          <span class="award-tier tier-gold">1st Place</span>
+        </div>
+
+        <div class="award-item">
+          <div class="award-icon">🎖️</div>
+          <div class="award-body">
+            <div class="award-name"><!-- TODO: Award name --></div>
+            <div class="award-meta"><!-- TODO: Organization --></div>
+            <div class="award-desc"><!-- TODO: Context --></div>
+          </div>
+          <span class="award-tier tier-finalist">Finalist</span>
+        </div>
+
+      </div>
+
+      <div class="award-year-group reveal">
+        <div class="award-year-label"><!-- TODO: Year --></div>
+
+        <div class="award-item">
+          <div class="award-icon">🥇</div>
+          <div class="award-body">
+            <div class="award-name"><!-- TODO: Award name --></div>
+            <div class="award-meta"><!-- TODO: Organization --></div>
+            <div class="award-desc"><!-- TODO: Context --></div>
+          </div>
+          <span class="award-tier tier-gold">Winner</span>
+        </div>
+
+        <div class="award-item">
+          <div class="award-icon">⭐</div>
+          <div class="award-body">
+            <div class="award-name"><!-- TODO: Award name --></div>
+            <div class="award-meta"><!-- TODO: Organization --></div>
+            <div class="award-desc"><!-- TODO: Context --></div>
+          </div>
+          <span class="award-tier tier-honor">Honor</span>
+        </div>
+
+      </div>
+
+      <!-- Copy a .award-year-group block and its .award-item children to add more years. -->
+
+    </section>
+  </div>
+
+  <div id="footer-container"></div>
+  <script src="../js/site.js"></script>
+  <script src="../js/game.js"></script>
+</body>
+</html>

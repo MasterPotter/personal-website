@@ -16,28 +16,28 @@
   --font-mono:    'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 
   /* Warm surfaces */
-  --bg:        #FBF6EC;   /* warm cream */
+  --bg:        #FCF8F0;   /* warm cream */
   --bg-card:   #FFFFFF;
   --bg-soft:   #F3EAD6;   /* sand panel */
   --bg-ink:    #211C16;   /* warm near-black (buttons / rare dark moments) */
 
-  --text:        #221D16;
-  --text-muted:  #6B6356;
-  --text-faint:  #A89D8B;
+  --text:        #18130B;
+  --text-muted:  #4C443A;
+  --text-faint:  #82786A;
   --text-on-ink:        #F6EFE2;
   --text-on-ink-muted:  #BCB09C;
 
   /* Amber "laser glow" accent — the warm signature */
   --accent:        #EBA31C;   /* golden amber — glow / highlight / hover */
   --accent-2:      #D98A0C;
-  --accent-strong: #9A5A00;   /* readable amber-brown for link/label text on cream */
+  --accent-strong: #8A5000;   /* readable amber-brown for link/label text on cream */
   --accent-soft:   #FBEBC6;   /* pale amber wash — highlighter + hover bg */
   --accent-glow:   rgba(235,163,28,0.22);
 
   /* Lines */
-  --border:       #EADFCB;
+  --border:       #E2D6BE;
   --border-hover: #EBA31C;
-  --rule:         rgba(34,29,22,0.10);
+  --rule:         rgba(34,29,22,0.14);
   --border-ink:   rgba(255,255,255,0.14);
 
   /* Type scale */
@@ -311,14 +311,15 @@ body.play #game-toggle { bottom: 18px !important; }
 .footer-links a:hover { color: var(--text); background: var(--accent-soft); }
 
 /* ── Project / writeup pages ───────────────────────────────── */
-.project-hero { padding: var(--space-8) var(--gutter) var(--space-7); max-width: var(--maxw-prose); margin: 0 auto; }
+.project-hero { padding: var(--space-8) var(--gutter) var(--space-7); max-width: var(--maxw-content); margin: 0 auto; }
 .project-hero .back-link { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-body); font-weight: 500; text-decoration: none; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 32px; transition: gap 0.18s, color 0.18s; }
 .project-hero .back-link:hover { color: var(--accent-strong); gap: 12px; }
 .project-hero h1 { font-family: var(--font-display); font-size: var(--fs-h1); font-weight: 800; letter-spacing: -0.025em; margin-bottom: 18px; line-height: 1.04; }
 .project-meta { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px; }
 .meta-pill { font-size: 0.8rem; font-weight: 500; padding: 5px 13px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-strong); }
-.project-summary { font-size: var(--fs-body-lg); color: var(--text-muted); line-height: 1.6; border-left: 3px solid var(--accent); padding-left: 20px; }
-.prose { max-width: var(--maxw-prose); margin: 0 auto; padding: 0 var(--gutter) var(--space-9); }
+.project-summary { font-size: var(--fs-body-lg); color: var(--text-muted); line-height: 1.6; border-left: 3px solid var(--accent); padding-left: 20px; max-width: var(--measure); }
+.prose { max-width: var(--maxw-content); margin: 0 auto; padding: 0 var(--gutter) var(--space-9); }
+.prose h2, .prose h3, .prose p, .prose ul { max-width: var(--measure); }
 .prose h2 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; margin: var(--space-7) 0 var(--space-4); }
 .prose h3 { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; margin: var(--space-6) 0 var(--space-3); }
 .prose p { color: var(--text-muted); margin-bottom: var(--space-4); }
@@ -327,7 +328,7 @@ body.play #game-toggle { bottom: 18px !important; }
 .prose a { color: var(--accent-strong); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
 .prose strong { color: var(--text); font-weight: 600; }
 
-.blog-posts { max-width: var(--maxw-prose); margin: 0 auto; padding: 0 var(--gutter) var(--space-9); }
+.blog-posts { max-width: var(--maxw-content); margin: 0 auto; padding: 0 var(--gutter) var(--space-9); }
 .blog-post { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 30px; margin-bottom: 18px; }
 .blog-post h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; margin-bottom: 12px; }
 .blog-post p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; }

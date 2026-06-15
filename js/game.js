@@ -749,7 +749,7 @@ function switchMode() {
 
   window.addEventListener('resize', resize);
   document.addEventListener('keydown', e => {
-    if (e.code === 'Space' || e.code === 'ArrowUp') { e.preventDefault(); press(); }
+    if (e.code === 'Space' || e.code === 'ArrowUp') { press(); }  /* no preventDefault: keep page scroll working */
   });
   document.addEventListener('keyup', e => {
     if (e.code === 'Space' || e.code === 'ArrowUp') release();

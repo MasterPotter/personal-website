@@ -10,11 +10,12 @@
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="css/style.css?v=6" />
+  <link rel="stylesheet" href="css/style.css?v=7" />
 </head>
 <body>
 
   <canvas id="atom-canvas" aria-hidden="true"></canvas>
+  <canvas id="game-canvas" aria-hidden="true"></canvas>
   <div id="nav-container"></div>
 
   <div class="page-wrapper">
@@ -22,17 +23,16 @@
     <!-- ── Hero (brief summary) ────────────────────────────── -->
     <header class="hero">
       <div class="hero-eyebrow eyebrow">Hi, I'm Zoeb</div>
-      <h1>I spend an unreasonable amount of time on <span class="accent-q">optical quantum computing</span>.</h1>
+      <h1>I'm building a <span class="accent-q">quantum computer</span>.</h1>
       <p class="hero-bio">
-        I'm a high-schooler in Northern Virginia. I design and build optical tweezer systems — and tinker
-        with a handful of other things on the side. This is a quick map of what I've been up to; the pages
-        up top have the details.
+        I'm a high-schooler in Northern Virginia, and I spend an unreasonable amount of my free time building
+        one in my school's lab. I tinker with a handful of other things too — the pages up top have the details.
       </p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="pages/quantum.html">What I work on <span class="btn-arrow">→</span></a>
         <a class="btn btn-ghost" href="pages/about.html">More about me</a>
       </div>
-      <p class="hero-play"><span class="tri">✦</span> Move your cursor around the page — a few things are hidden in the dots.</p>
+      <p class="hero-play"><span class="tri">✦</span> Move your cursor around — a few things are hidden in the dots. Can you find all 6?</p>
     </header>
 
     <!-- ── Explore (links to the real pages) ───────────────── -->
@@ -44,8 +44,8 @@
       <div class="card-grid reveal">
         <a class="card" href="pages/quantum.html">
           <div class="card-tag">Quantum</div>
-          <h3>Optical quantum computing</h3>
-          <p>The main thing I work on — optical tweezers, neutral-atom traps, and a small quantum computer.</p>
+          <h3>Building a quantum computer</h3>
+          <p>The main thing I work on — a small neutral-atom quantum computer, and the optical tweezers that hold its qubits.</p>
           <span class="card-link">Take a look →</span>
         </a>
         <a class="card" href="pages/projects.html">
@@ -73,9 +73,10 @@
 
   <div id="footer-container"></div>
 
-  <script src="js/partials.js?v=6"></script>
-  <script src="js/site.js?v=6"></script>
-  <script src="js/atom-array.js?v=6"></script>
-  <script src="js/superposition.js?v=6"></script>
+  <script src="js/partials.js?v=7"></script>
+  <script src="js/site.js?v=7"></script>
+  <script src="js/atom-array.js?v=7"></script>
+  <script src="js/superposition.js?v=7"></script>
+  <script src="js/game.js?v=7"></script>
 </body>
 </html>

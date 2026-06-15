@@ -21,7 +21,7 @@
     { label: 'Cooking', svg:
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h13a6.5 6.5 0 0 1-13 0Z"/><path d="M16 12h5"/><path d="M7 5.5c0 1 1 1.2 1 2.2M11 4.8c0 1 1 1.2 1 2.2"/></svg>' },
     { label: 'Viola', svg:
-      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="9" cy="16" rx="5" ry="6"/><path d="M11.4 11.2 18.5 4"/><path d="M17 2.6 20.4 6"/><path d="M7.6 15v2.2M10.4 15v2.2"/></svg>' },
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.5 20.8c-2.1.3-3.6-1.4-3-3.4.2-.7-.1-1.4-.6-1.9-1.2-1.2-.8-3.2.8-3.7.7-.2 1.2-.8 1.2-1.6 0-2 1.7-3.4 3.6-2.8"/><path d="M12.5 7.4c1.9-.6 3.6.8 3.6 2.8 0 .8.5 1.4 1.2 1.6 1.6.5 2 2.5.8 3.7-.5.5-.8 1.2-.6 1.9.6 2-.9 3.7-3 3.4"/><path d="M9.4 13.2v2.1M13.6 12.8v2.1"/><path d="M11.7 7.5 17 2.4"/><path d="M15.9 1.6c1 .2 1.6 1.1 1.3 2"/><path d="M2.8 7.8 19 19.2"/><path d="M2.8 7.8l.4-1.7 1.6-.4M19 19.2l-.4 1.7-1.6.4"/></svg>' },
     { label: 'Model UN', svg:
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="11" y="3.6" width="8.2" height="4.6" rx="1.4" transform="rotate(45 15.1 5.9)"/><path d="M12.6 9.4 6.6 15.4"/><path d="M4.4 19.6h8.4"/></svg>' }
   ];
@@ -47,10 +47,10 @@
   function scatter() {
     layer.innerHTML = ''; marks = [];
     var w = window.innerWidth, h = window.innerHeight;
-    var n = Math.max(5, Math.min(STATES.length, Math.round(w / 230)));
+    var n = Math.max(7, Math.min(11, Math.round(w / 180)));
     var placed = [];
     for (var i = 0; i < n; i++) {
-      var s = STATES[i % STATES.length];
+      var s = STATES[Math.floor(Math.random() * STATES.length)];  /* uniformly random — you can get two of the same */
       var x, y, t = 0, ok;
       do {
         x = 56 + Math.random() * (w - 112);

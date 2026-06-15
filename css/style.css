@@ -142,9 +142,16 @@ img { max-width: 100%; display: block; }
 /* ── Atom-array canvas (the warm quantum motif / game) ─────── */
 #atom-canvas {
   position: fixed; inset: 0; width: 100%; height: 100%;
-  z-index: -1; pointer-events: none; opacity: 1; transition: opacity 0.5s ease;
+  z-index: -2; pointer-events: none; opacity: 1; transition: opacity 0.5s ease;
 }
 #atom-canvas.off { opacity: 0; }
+
+/* Geometry Dash game — faint background on every page, overlaid on the dots */
+#game-canvas { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.16; pointer-events: none; }
+#game-score { display: none; }            /* hide the score on content pages */
+body.play #game-score { display: block !important; }
+#game-toggle { bottom: 62px !important; background: rgba(255,253,248,0.85) !important; border: 1px solid var(--border) !important; color: var(--text-muted) !important; font-family: var(--font-body) !important; letter-spacing: 0.02em !important; }
+body.play #game-toggle { bottom: 18px !important; }
 
 #atom-toggle {
   position: fixed; right: 16px; bottom: 16px; z-index: 90;

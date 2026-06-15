@@ -1,177 +1,265 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-root=".">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zoeb Izzi</title>
-  <meta name="description" content="Zoeb Izzi — student, builder, researcher." />
+  <title>Zoeb Izzi — Optical Quantum Computing</title>
+  <meta name="description" content="Zoeb Izzi — a high-school researcher designing low-cost optical tweezer arrays for rubidium and cesium qubits, and building a quantum computer to use them." />
+  <meta property="og:title" content="Zoeb Izzi — Optical Quantum Computing" />
+  <meta property="og:description" content="High-school researcher trapping single atoms with light. Quantum hardware, rockets, AI, and research." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Inter:wght@300..600&family=JetBrains+Mono:wght@400;500;600&display=swap" />
   <link rel="stylesheet" href="css/style.css" />
-  <style>
-    /* ── Index-only: hero + nav cards ── */
-    .hero {
-      min-height: calc(100vh - var(--nav-h));
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 80px max(28px, 9vw) 60px;
-      max-width: 900px;
-    }
-    .hero-eyebrow {
-      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--accent);
-      display: flex; align-items: center; gap: 10px; margin-bottom: 22px;
-    }
-    .hero-eyebrow::before {
-      content: ''; display: inline-block; width: 26px; height: 2px;
-      background: var(--accent); border-radius: 2px;
-    }
-    .hero h1 {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(2.8rem, 6.5vw, 5rem);
-      font-weight: 800; line-height: 1.04; letter-spacing: -0.03em;
-      color: var(--text); margin-bottom: 26px;
-    }
-    .hero h1 .accent { color: var(--accent); }
-    .hero-bio {
-      font-size: 1.12rem; color: var(--text-muted);
-      max-width: 540px; line-height: 1.75;
-      margin-bottom: 38px; font-weight: 300;
-    }
-    .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 70px; }
-    .hint {
-      font-size: 0.7rem; color: #94A3B8; letter-spacing: 0.08em;
-      margin-top: auto;
-    }
-
-    /* ── Page nav grid ── */
-    .nav-grid-section {
-      position: relative; z-index: 1;
-      padding: 60px max(28px, 6vw) 80px;
-      max-width: 1080px; margin: 0 auto;
-    }
-    .nav-grid-label {
-      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--accent); margin-bottom: 28px;
-    }
-    .nav-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 16px;
-    }
-    .nav-tile {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 26px 24px;
-      text-decoration: none; color: inherit;
-      display: flex; flex-direction: column; gap: 8px;
-      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-    }
-    .nav-tile:hover {
-      border-color: var(--border-hover);
-      box-shadow: var(--shadow-lg);
-      transform: translateY(-3px);
-    }
-    .nav-tile-icon { font-size: 1.5rem; }
-    .nav-tile-name {
-      font-family: 'Syne', sans-serif; font-weight: 700;
-      font-size: 1rem; color: var(--text);
-    }
-    .nav-tile-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
-    .nav-tile-arrow {
-      margin-top: 10px; font-size: 0.8rem; font-weight: 600;
-      color: var(--accent); letter-spacing: 0.04em;
-    }
-  </style>
 </head>
 <body>
 
-  <canvas id="game-canvas" aria-hidden="true"></canvas>
-
+  <canvas id="atom-canvas" aria-hidden="true"></canvas>
   <div id="nav-container"></div>
 
   <div class="page-wrapper">
 
-    <!-- Hero -->
-    <section class="hero">
-      <div class="hero-eyebrow">Welcome</div>
-      <h1>Hi, I'm<br><span class="accent">Zoeb Izzi.</span></h1>
+    <!-- ── Hero ───────────────────────────────────────────── -->
+    <header class="hero">
+      <div class="hero-eyebrow eyebrow">Optical Quantum Computing · TJHSST</div>
+      <h1>I trap single atoms with <span class="accent-q">light</span>.</h1>
       <p class="hero-bio">
-        <!-- TODO: Write 2–3 sentences. What do you build? What drives you? Where are you based? -->
-        Student · Builder · [Your field here]. Based in [Your city].
-        I work on [what you care about] and write about the process.
+        Zoeb Izzi — a high-school researcher designing low-cost optical tweezer arrays for
+        rubidium and cesium qubits, and building a quantum computer to use them.
+        Rockets, robots, and research on the side.
       </p>
       <div class="hero-cta">
-        <a class="btn btn-primary" href="pages/about.html">About me</a>
-        <a class="btn btn-ghost" href="pages/contact.html">Get in touch</a>
+        <a class="btn btn-primary" href="#quantum">See the quantum work <span class="btn-arrow">→</span></a>
+        <a class="btn btn-ghost" href="#contact">Get in touch</a>
       </div>
-      <p class="hint">SPACE / CLICK / TAP — play the game in the background ↓</p>
+      <button class="hero-play" type="button" onclick="window.AtomArray&&window.AtomArray.play()">
+        <span class="tri">▶</span> Assemble the atom array — the lattice behind this page is live.
+      </button>
+
+      <div class="hero-stats stat-strip reveal">
+        <div class="stat"><span class="stat-num">40%</span><span class="stat-label">QMCS · PhD-level mean 35%</span></div>
+        <div class="stat"><span class="stat-num">4.44</span><span class="stat-label">Weighted GPA</span></div>
+        <div class="stat"><span class="stat-num">Top 2%</span><span class="stat-label">Blue Ocean · O-Seal</span></div>
+        <div class="stat"><span class="stat-num">$2,500</span><span class="stat-label">SXSW runner-up · Swype AI</span></div>
+      </div>
+    </header>
+
+    <!-- ── Quantum (headline) ─────────────────────────────── -->
+    <section class="section section--ink" id="quantum">
+      <div class="section-inner">
+        <div class="section-header reveal">
+          <div class="section-label">01 — Headline work</div>
+          <h2 class="section-title">Building a neutral-atom quantum&nbsp;computer, from scratch.</h2>
+          <p class="section-sub">Most high schoolers don't spend their weekends aligning optics for atom traps. I do — and this fall I'm cleared to start building a quantum computer in the TJ labs.</p>
+        </div>
+
+        <div class="q-grid reveal">
+          <div>
+            <p>
+              Neutral-atom quantum computers hold individual atoms in tightly focused beams of laser
+              light — <strong>optical tweezers</strong> — and use them as qubits. I've been building that
+              stack myself: designing atomic traps for rubidium and cesium, and bringing functional
+              optical tweezers into their first experimental testing.
+            </p>
+            <p>
+              My goal is a version of an optical quantum computer that's financially practical for high
+              schools and small universities, yet large enough to run real code. It's the kind of tangible
+              scaling problem I find impossible to put down.
+            </p>
+            <a class="on-ink-link" href="pages/quantum.html">Read the full writeup <span>→</span></a>
+          </div>
+
+          <div>
+            <ul class="q-points">
+              <li><span class="qi">◉</span><span><b>Optical tweezers</b> for Rb &amp; Cs atoms — designed and entering experimental testing.</span></li>
+              <li><span class="qi">◉</span><span><b>A cost-practical optical quantum computer</b> — scoped for schools, big enough to run projects.</span></li>
+              <li><span class="qi">◉</span><span><b>Approved to build</b> a quantum computer in the TJHSST labs this coming fall.</span></li>
+              <li><span class="qi">◉</span><span><b>40% on the QMCS</b> — a conceptual benchmark for upper-level undergrads and early PhD students (mean ≈ 35%).</span></li>
+            </ul>
+            <div class="q-tools">
+              <span class="q-tool">PennyLane</span><span class="q-tool">Qiskit</span><span class="q-tool">Nighthawk</span>
+              <span class="q-tool">Fusion 360</span><span class="q-tool">Python</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Selected work ──────────────────────────────────── -->
+    <section class="section" id="work">
+      <div class="section-header reveal">
+        <div class="section-label">02 — Selected work</div>
+        <h2 class="section-title">Things I've built</h2>
+        <p class="section-sub">A few projects that span quantum hardware, climate tech, accessibility AI, aerospace, and robotics.</p>
+      </div>
+
+      <div class="work-list reveal">
+        <a class="work-item" href="pages/quantum.html">
+          <span class="work-index">01</span>
+          <div class="work-main">
+            <h3>Optical Tweezer Array</h3>
+            <p>Trapping single rubidium and cesium atoms in focused laser light — the qubits for a low-cost optical quantum computer.</p>
+            <div class="work-tags"><span class="work-tag">Quantum</span><span class="work-tag">Optics</span><span class="work-tag">Hardware</span></div>
+          </div>
+          <span class="work-meta">2026 <span class="arrow">↗</span></span>
+        </a>
+
+        <a class="work-item" href="project-pages/o-seal.html">
+          <span class="work-index">02</span>
+          <div class="work-main">
+            <h3>Project O-Seal</h3>
+            <p>An in-pipe device that seals leaks from the inside. Provisional patent acquired; featured at Oxford's Global Youth Climate Summit.</p>
+            <div class="work-tags"><span class="work-tag">Climate</span><span class="work-tag">Patent</span><span class="work-tag">CAD</span></div>
+          </div>
+          <span class="work-meta">2025 <span class="arrow">↗</span></span>
+        </a>
+
+        <a class="work-item" href="project-pages/swype-ai.html">
+          <span class="work-index">03</span>
+          <div class="work-main">
+            <h3>Swype AI</h3>
+            <p>Gesture and voice control for people with arthritis and motor disorders — custom Fourier speech analysis, an NLP layer, and a Kalman-filtered hand tracker.</p>
+            <div class="work-tags"><span class="work-tag">ML</span><span class="work-tag">Accessibility</span><span class="work-tag">DSP</span></div>
+          </div>
+          <span class="work-meta">2024 <span class="arrow">↗</span></span>
+        </a>
+
+        <a class="work-item" href="project-pages/caelus.html">
+          <span class="work-index">04</span>
+          <div class="work-main">
+            <h3>Project Caelus</h3>
+            <p>Structures on a student team building one of the first high-school-launched liquid-fueled rockets — nose cones, test stands, and cold-flow tests.</p>
+            <div class="work-tags"><span class="work-tag">Aerospace</span><span class="work-tag">Structures</span><span class="work-tag">CAD</span></div>
+          </div>
+          <span class="work-meta">2024 <span class="arrow">↗</span></span>
+        </a>
+
+        <a class="work-item" href="project-pages/capitalbots.html">
+          <span class="work-index">05</span>
+          <div class="work-main">
+            <h3>CapitalBots — FIRST Tech Challenge</h3>
+            <p>Captain, lead programmer, and driver. Custom RoadRunner-based pathfinding and the first published field-centric TeleOp for the RoadRunner 1.0 docs.</p>
+            <div class="work-tags"><span class="work-tag">Robotics</span><span class="work-tag">Controls</span><span class="work-tag">Leadership</span></div>
+          </div>
+          <span class="work-meta">2021 <span class="arrow">↗</span></span>
+        </a>
+      </div>
     </section>
 
     <div class="divider"></div>
 
-    <!-- Page nav -->
-    <div class="nav-grid-section">
-      <div class="nav-grid-label">Explore</div>
-      <div class="nav-grid">
-
-        <a class="nav-tile reveal" href="pages/about.html">
-          <div class="nav-tile-icon">👤</div>
-          <div class="nav-tile-name">About</div>
-          <div class="nav-tile-desc">Who I am, where I'm from, and what I care about.</div>
-          <div class="nav-tile-arrow">Read →</div>
-        </a>
-
-        <a class="nav-tile reveal" href="pages/events.html">
-          <div class="nav-tile-icon">📅</div>
-          <div class="nav-tile-name">Upcoming Events</div>
-          <div class="nav-tile-desc">Talks, competitions, and conferences I'll be at.</div>
-          <div class="nav-tile-arrow">See schedule →</div>
-        </a>
-
-        <a class="nav-tile reveal" href="pages/projects-progress.html">
-          <div class="nav-tile-icon">🔨</div>
-          <div class="nav-tile-name">Projects in Progress</div>
-          <div class="nav-tile-desc">What I'm actively building, with regular updates.</div>
-          <div class="nav-tile-arrow">See projects →</div>
-        </a>
-
-        <a class="nav-tile reveal" href="pages/projects-docket.html">
-          <div class="nav-tile-icon">📋</div>
-          <div class="nav-tile-name">On the Docket</div>
-          <div class="nav-tile-desc">Ideas and projects I've queued up to start next.</div>
-          <div class="nav-tile-arrow">See the list →</div>
-        </a>
-
-        <a class="nav-tile reveal" href="pages/research.html">
-          <div class="nav-tile-icon">🔬</div>
-          <div class="nav-tile-name">Research</div>
-          <div class="nav-tile-desc">Academic work, lab collaborations, and papers.</div>
-          <div class="nav-tile-arrow">Read →</div>
-        </a>
-
-        <a class="nav-tile reveal" href="pages/awards.html">
-          <div class="nav-tile-icon">🏆</div>
-          <div class="nav-tile-name">Awards</div>
-          <div class="nav-tile-desc">Competitions, fellowships, and recognition.</div>
-          <div class="nav-tile-arrow">See awards →</div>
-        </a>
-
-        <a class="nav-tile reveal" href="pages/contact.html">
-          <div class="nav-tile-icon">✉️</div>
-          <div class="nav-tile-name">Contact</div>
-          <div class="nav-tile-desc">Want to collaborate or just say hi? Reach out.</div>
-          <div class="nav-tile-arrow">Get in touch →</div>
-        </a>
-
+    <!-- ── Research & writing ─────────────────────────────── -->
+    <section class="section" id="research">
+      <div class="section-header reveal">
+        <div class="section-label">03 — Research &amp; writing</div>
+        <h2 class="section-title">Published work</h2>
+        <p class="section-sub">Primary author on two papers with Prof. Jiasun Li (George Mason University), with a third in progress.</p>
       </div>
-    </div>
 
-  </div><!-- end page-wrapper -->
+      <div class="pub-list reveal">
+        <div class="pub-item">
+          <div class="pub-meta"><span>Primary author</span><span>with Prof. Jiasun Li</span><span>2025</span></div>
+          <h3>Tokenized Real-World Assets: growth &amp; analysis</h3>
+          <p>A comprehensive report, produced with a team of three, analyzing the rapid rise of tokenized real-world assets (RWAs) and what's driving it.</p>
+        </div>
+        <div class="pub-item">
+          <div class="pub-meta"><span>Primary author</span><span>with Prof. Jiasun Li</span><span>2025</span></div>
+          <h3>Cryptocurrency exchange valuation &amp; stability</h3>
+          <p>The distribution, valuation, and yields of current crypto exchanges — and their probability of financial instability and shutdown over time.</p>
+        </div>
+        <div class="pub-item">
+          <div class="pub-meta"><span>In progress</span></div>
+          <h3>A global crypto-exchange safety index</h3>
+          <p>Building a single index to describe and score the safety of any cryptocurrency exchange worldwide.</p>
+        </div>
+      </div>
+      <a class="card-link reveal" href="pages/research.html" style="margin-top:32px;">More on research &amp; collaborations →</a>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── Beyond the lab ─────────────────────────────────── -->
+    <section class="section" id="range">
+      <div class="section-header reveal">
+        <div class="section-label">04 — Beyond the lab</div>
+        <h2 class="section-title">A wide net</h2>
+        <p class="section-sub">Quantum is the headline — but the throughline is building hard things and leading teams that do.</p>
+      </div>
+
+      <div class="range-grid reveal">
+        <div class="range-item"><div class="r-label">Aerospace</div><h4>Project Caelus</h4><p>Structures &amp; test stands for a student liquid-fuel rocket.</p></div>
+        <div class="range-item"><div class="r-label">Robotics</div><h4>FTC · CapitalBots</h4><p>Captain &amp; lead programmer; Worlds 2021; custom pathfinding.</p></div>
+        <div class="range-item"><div class="r-label">Math modeling</div><h4>HiMCM &amp; M3</h4><p>Honorable Mention and finalist; modeling in MATLAB.</p></div>
+        <div class="range-item"><div class="r-label">Model UN</div><h4>Crisis Czar</h4><p>10× Best Delegate; webmaster and crisis director.</p></div>
+        <div class="range-item"><div class="r-label">Teaching</div><h4>Kumon tutor</h4><p>Higher-level math &amp; English since 2024.</p></div>
+        <div class="range-item"><div class="r-label">Off the clock</div><h4>Viola, 3-D printing</h4><p>Plus cooking, public speaking, and far too much news.</p></div>
+      </div>
+      <a class="card-link reveal" href="pages/awards.html" style="margin-top:28px;">See all awards &amp; recognition →</a>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── About ──────────────────────────────────────────── -->
+    <section class="section" id="about">
+      <div class="section-header reveal">
+        <div class="section-label">05 — About</div>
+        <h2 class="section-title">Who I am</h2>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p class="lead">I'm a high-school student at Thomas Jefferson High School for Science and Technology, where I study optical quantum computing — and spend my weekends aligning optics for atom traps I build myself.</p>
+          <p>Most of what I do starts the same way: a hard problem, a pile of parts, and the stubborn belief that a student can build the real thing. That's taken me from neutral-atom tweezers to a liquid-fuel rocket, an accessibility startup, two finance papers, and a provisional patent.</p>
+          <p>When I'm not in a lab or a CAD file, I'm playing viola, 3-D printing something, cooking, or arguing a point in Model UN.</p>
+          <div style="margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap;">
+            <a class="btn btn-primary" href="pages/about.html">More about me <span class="btn-arrow">→</span></a>
+            <a class="btn btn-ghost" href="pages/contact.html">Contact</a>
+          </div>
+        </div>
+
+        <aside class="about-aside reveal">
+          <!-- Replace with assets/zoeb.jpg once provided:
+               <img class="headshot" src="assets/zoeb.jpg" alt="Zoeb Izzi" /> -->
+          <div class="headshot-ph">Headshot<br />(add assets/zoeb.jpg)</div>
+          <div class="quick-facts">
+            <h3>Quick facts</h3>
+            <div class="fact-row"><span class="fact-label">Based in</span><span class="fact-value">Herndon, Virginia</span></div>
+            <div class="fact-row"><span class="fact-label">School</span><span class="fact-value">TJHSST · Class of 2027</span></div>
+            <div class="fact-row"><span class="fact-label">Focus</span><span class="fact-value">Optical quantum computing</span></div>
+            <div class="fact-row"><span class="fact-label">Tools</span><span class="fact-value">PennyLane, Qiskit, Python, Fusion 360</span></div>
+            <div class="fact-row"><span class="fact-label">Currently building</span><span class="fact-value">An optical tweezer atom array</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── Contact ────────────────────────────────────────── -->
+    <section class="section" id="contact">
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <div class="section-label">06 — Contact</div>
+          <h2 class="section-title" style="margin:10px 0 18px;">Let's build something.</h2>
+          <p>I'm always up for talking quantum hardware, a wild project idea, or a research collaboration. The fastest way to reach me is email.</p>
+        </div>
+        <div class="contact-links reveal">
+          <a class="contact-link" href="mailto:zoeb.m.izzi@gmail.com"><span class="ci">Email</span> zoeb.m.izzi@gmail.com</a>
+          <a class="contact-link" href="tel:+15715316522"><span class="ci">Phone</span> (571) 531-6522</a>
+          <a class="contact-link" href="https://www.linkedin.com/in/zoeb-izzi" target="_blank" rel="noopener"><span class="ci">LinkedIn</span> /in/zoeb-izzi</a>
+          <a class="contact-link" href="https://github.com/MasterPotter" target="_blank" rel="noopener"><span class="ci">GitHub</span> @MasterPotter</a>
+          <a class="contact-link" href="https://maps.google.com/?q=Herndon,VA" target="_blank" rel="noopener"><span class="ci">Location</span> Herndon, VA</a>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /.page-wrapper -->
 
   <div id="footer-container"></div>
 
+  <script src="js/partials.js"></script>
   <script src="js/site.js"></script>
-  <script src="js/game.js"></script>
+  <script src="js/atom-array.js"></script>
 </body>
 </html>

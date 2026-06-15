@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" data-root="..">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Swype AI — Zoeb Izzi</title>
+  <meta name="description" content="Gesture and voice control for people with arthritis and motor disorders — custom Fourier speech analysis, NLP, and a Kalman-filtered hand tracker. SXSW runner-up." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Inter:wght@300..600&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+  <canvas id="atom-canvas" aria-hidden="true"></canvas>
+  <div id="nav-container"></div>
+
+  <div class="page-wrapper">
+    <article>
+      <header class="project-hero">
+        <a class="back-link" href="../index.html#work">← Back to work</a>
+        <h1>Swype AI</h1>
+        <div class="project-meta">
+          <span class="meta-pill">CFO &amp; Technical Lead</span>
+          <span class="meta-pill">Jul 2024 – Present</span>
+          <span class="meta-pill">SXSW runner-up · $2,500</span>
+        </div>
+        <p class="project-summary">Letting people with arthritis and motor disorders control a computer with hand motions and voice — when they otherwise couldn't.</p>
+      </header>
+
+      <div class="prose">
+        <h2>The problem</h2>
+        <p>For people with arthritis and other motor disorders, ordinary input devices can be painful or impossible to use. Swype AI is a system that lets them drive a computer through hand gestures and speech instead.</p>
+
+        <h2>How it works</h2>
+        <ul>
+          <li>A custom <strong>Fourier signal-analysis</strong> pipeline for voice recognition, paired with an <strong>NLP layer</strong> that detects keywords and maps them to commands.</li>
+          <li>The same pipeline <strong>filters out accents and individual voice tendencies</strong> to recover clean raw text from speech, then passes the resulting commands to the computer to execute.</li>
+          <li>A <strong>Kalman-filtered hand tracker</strong> with a landmark system reads gestures, so motion alone can move a cursor and trigger actions.</li>
+        </ul>
+
+        <h2>What I'm improving now</h2>
+        <p>I'm refining the Kalman filter and building a better landmark system to detect gestures at a higher frame rate — the difference between a demo and something genuinely dependable day to day.</p>
+
+        <h2>Recognition</h2>
+        <ul>
+          <li><strong>Runner-up at SXSW</strong> with a $2,500 cash prize.</li>
+          <li>Best-AI-Hack and Best-Hack wins at Boost Hacks II and NOVA Hacks.</li>
+        </ul>
+
+        <p><a href="../index.html#contact">Reach out →</a></p>
+      </div>
+    </article>
+  </div>
+
+  <div id="footer-container"></div>
+  <script src="../js/partials.js"></script>
+  <script src="../js/site.js"></script>
+  <script src="../js/atom-array.js"></script>
+</body>
+</html>

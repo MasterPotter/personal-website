@@ -1,144 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-root="..">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About — Zoeb Izzi</title>
+  <meta name="description" content="About Zoeb Izzi — a high-school optical-quantum-computing researcher at TJHSST, builder, and team leader based in Herndon, Virginia." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Inter:wght@300..600&family=JetBrains+Mono:wght@400;500;600&display=swap" />
   <link rel="stylesheet" href="../css/style.css" />
-  <style>
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 340px;
-      gap: 48px;
-      align-items: start;
-    }
-    .about-text p {
-      color: var(--text-muted); font-size: 1rem;
-      line-height: 1.8; margin-bottom: 20px; font-weight: 300;
-    }
-    .quick-facts {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 26px;
-      position: sticky;
-      top: calc(var(--nav-h) + 24px);
-    }
-    .quick-facts h3 {
-      font-family: 'Syne', sans-serif; font-weight: 700;
-      font-size: 0.85rem; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--accent);
-      margin-bottom: 18px;
-    }
-    .fact-row {
-      display: flex; gap: 14px; align-items: flex-start;
-      padding: 10px 0; border-bottom: 1px solid var(--border);
-      font-size: 0.88rem;
-    }
-    .fact-row:last-child { border-bottom: none; }
-    .fact-icon { flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
-    .fact-label { color: var(--text-muted); }
-    .fact-value { color: var(--text); font-weight: 500; }
-    @media (max-width: 760px) {
-      .about-grid { grid-template-columns: 1fr; }
-      .quick-facts { position: static; }
-    }
-  </style>
 </head>
 <body>
 
-  <canvas id="game-canvas" aria-hidden="true"></canvas>
+  <canvas id="atom-canvas" aria-hidden="true"></canvas>
   <div id="nav-container"></div>
 
   <div class="page-wrapper">
-    <section class="section" style="padding-top: 60px;">
-
+    <section class="section" style="padding-top: var(--space-8);">
       <div class="section-header reveal">
         <div class="section-label">About</div>
         <h1 class="section-title">Who I am</h1>
       </div>
 
       <div class="about-grid">
-
         <div class="about-text reveal">
-          <p>
-            <!-- TODO: Paragraph 1 — origin story. Where are you from? What sparked your interest
-                 in what you're doing? What's the thread through your life so far? -->
-            This is the first paragraph about you. Write it in first person and make it feel personal —
-            where you grew up, what got you obsessed with your field, a formative moment or project.
-          </p>
-          <p>
-            <!-- TODO: Paragraph 2 — what you're doing now. Current school, lab, program, or role.
-                 What are you working toward? -->
-            Second paragraph: your current situation. What institution or program are you in?
-            What's your focus? Who do you work with or learn from?
-          </p>
-          <p>
-            <!-- TODO: Paragraph 3 — interests beyond your main work. Hobbies, side projects,
-                 communities, things that make you you. -->
-            Third paragraph: the rest of you. What else are you into? Sports, music, writing,
-            random side projects, things you read obsessively — whatever gives a fuller picture.
-          </p>
-          <div style="margin-top: 32px; display: flex; gap: 12px; flex-wrap: wrap;">
-            <a class="btn btn-primary" href="contact.html">Get in touch</a>
-            <a class="btn btn-ghost" href="research.html">See my research</a>
+          <p class="lead">I'm a high-school student at Thomas Jefferson High School for Science and Technology, where I study optical quantum computing — and spend my weekends aligning optics for atom traps I build myself.</p>
+          <p>Most of what I do starts the same way: a hard problem, a pile of parts, and the stubborn belief that a student can build the real thing. That instinct has taken me from neutral-atom optical tweezers to a liquid-fueled rocket, an accessibility startup, two finance papers with a university professor, and a provisional patent for a device that repairs pipes from the inside.</p>
+          <p>I'm just as interested in the people side of building. I've captained a robotics team across all of its build, programming, and outreach divisions, served as a crisis director and webmaster in Model UN, and tutored higher-level math and English — and I've found that the projects that actually ship are the ones where the team communicates well.</p>
+          <p>When I'm not in a lab or a CAD file, I'm playing viola, 3-D printing something, cooking, public speaking, or reading far too much news.</p>
+          <div style="margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap;">
+            <a class="btn btn-primary" href="../index.html#contact">Get in touch <span class="btn-arrow">→</span></a>
+            <a class="btn btn-ghost" href="quantum.html">See the quantum work</a>
           </div>
         </div>
 
-        <div class="reveal">
+        <aside class="about-aside reveal">
+          <!-- Replace with assets/zoeb.jpg once provided:
+               <img class="headshot" src="../assets/zoeb.jpg" alt="Zoeb Izzi" /> -->
+          <div class="headshot-ph">Headshot<br />(add assets/zoeb.jpg)</div>
           <div class="quick-facts">
-            <h3>Quick Facts</h3>
-            <div class="fact-row">
-              <span class="fact-icon">📍</span>
-              <div>
-                <div class="fact-label">Based in</div>
-                <div class="fact-value"><!-- TODO: City, State --></div>
-              </div>
-            </div>
-            <div class="fact-row">
-              <span class="fact-icon">🎓</span>
-              <div>
-                <div class="fact-label">School / Program</div>
-                <div class="fact-value"><!-- TODO: e.g. MIT · Class of 20XX --></div>
-              </div>
-            </div>
-            <div class="fact-row">
-              <span class="fact-icon">🔭</span>
-              <div>
-                <div class="fact-label">Current focus</div>
-                <div class="fact-value"><!-- TODO: e.g. ML for drug discovery --></div>
-              </div>
-            </div>
-            <div class="fact-row">
-              <span class="fact-icon">🛠️</span>
-              <div>
-                <div class="fact-label">Tools I use</div>
-                <div class="fact-value"><!-- TODO: e.g. Python, PyTorch, Figma --></div>
-              </div>
-            </div>
-            <div class="fact-row">
-              <span class="fact-icon">⚡</span>
-              <div>
-                <div class="fact-label">Fun fact</div>
-                <div class="fact-value"><!-- TODO: something interesting/unexpected about you --></div>
-              </div>
-            </div>
-            <div class="fact-row">
-              <span class="fact-icon">📖</span>
-              <div>
-                <div class="fact-label">Currently reading</div>
-                <div class="fact-value"><!-- TODO: book title --></div>
-              </div>
-            </div>
+            <h3>Quick facts</h3>
+            <div class="fact-row"><span class="fact-label">Based in</span><span class="fact-value">Herndon, Virginia</span></div>
+            <div class="fact-row"><span class="fact-label">School</span><span class="fact-value">TJHSST · Class of 2027</span></div>
+            <div class="fact-row"><span class="fact-label">Focus</span><span class="fact-value">Optical quantum computing</span></div>
+            <div class="fact-row"><span class="fact-label">Languages</span><span class="fact-value">Python, Java, C++</span></div>
+            <div class="fact-row"><span class="fact-label">Fun fact</span><span class="fact-value">Scored 40% on a PhD-level quantum survey</span></div>
+            <div class="fact-row"><span class="fact-label">Plays</span><span class="fact-value">Viola</span></div>
+          </div>
+        </aside>
+      </div>
+
+      <hr class="rule" />
+
+      <div class="section-header reveal">
+        <div class="section-label">Education</div>
+        <h2 class="section-title">Coursework &amp; foundations</h2>
+        <p class="section-sub">Thomas Jefferson High School for Science and Technology — Alexandria, VA. Diploma expected June 2027. GPA 4.44 / 3.95 (weighted / unweighted).</p>
+      </div>
+
+      <div class="timeline reveal">
+        <div class="timeline-item">
+          <div class="timeline-date">Physics</div>
+          <div class="timeline-content">
+            <h3>Electrodynamics &amp; Quantum Physics · AP Physics C (Mechanics, E&amp;M)</h3>
+            <p>University-level physics — the backbone of the quantum-hardware work. AP Physics C: Mechanics (4), Electromagnetism (4).</p>
           </div>
         </div>
-
+        <div class="timeline-item">
+          <div class="timeline-date">Mathematics</div>
+          <div class="timeline-content">
+            <h3>AP Calculus BC (5) · Multivariable Calculus · Advanced Mathematical Techniques · AP Statistics</h3>
+            <p>The math toolkit behind the modeling, controls, and signal-processing projects.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">Computer Science</div>
+          <div class="timeline-content">
+            <h3>AP Computer Science Advanced (5) · Data Structures · Artificial Intelligence · Design &amp; Tech</h3>
+            <p>Software foundations for everything from pathfinding to the Swype AI signal pipeline.</p>
+          </div>
+        </div>
       </div>
+      <p class="section-sub reveal" style="margin-top: 16px;">Note: AP courses whose scores aren't listed are being taken this school year.</p>
     </section>
   </div>
 
   <div id="footer-container"></div>
+  <script src="../js/partials.js"></script>
   <script src="../js/site.js"></script>
-  <script src="../js/game.js"></script>
+  <script src="../js/atom-array.js"></script>
 </body>
 </html>

@@ -1,132 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-root="..">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Research — Zoeb Izzi</title>
+  <meta name="description" content="Research and publications by Zoeb Izzi — primary author on two papers with Prof. Jiasun Li on tokenized real-world assets and crypto-exchange stability, plus a safety index in progress." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Inter:wght@300..600&family=JetBrains+Mono:wght@400;500;600&display=swap" />
   <link rel="stylesheet" href="../css/style.css" />
-  <style>
-    .research-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 30px 32px;
-      margin-bottom: 18px;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-    .research-card:hover { border-color: var(--border-hover); box-shadow: var(--shadow-md); }
-    .research-card-top {
-      display: flex; justify-content: space-between;
-      align-items: flex-start; gap: 16px; flex-wrap: wrap;
-      margin-bottom: 14px;
-    }
-    .research-title {
-      font-family: 'Syne', sans-serif; font-weight: 700;
-      font-size: 1.05rem; color: var(--text);
-    }
-    .research-org {
-      font-size: 0.82rem; color: var(--text-muted); margin-top: 4px;
-      display: flex; align-items: center; gap: 6px;
-    }
-    .research-dates {
-      font-size: 0.78rem; font-weight: 600; color: var(--accent);
-      background: var(--accent-soft); padding: 4px 10px;
-      border-radius: 20px; white-space: nowrap;
-    }
-    .research-desc { font-size: 0.92rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 16px; }
-    .research-links { display: flex; gap: 10px; flex-wrap: wrap; }
-    .research-link {
-      font-size: 0.8rem; font-weight: 600; color: var(--accent);
-      text-decoration: none; display: flex; align-items: center; gap: 5px;
-      padding: 5px 12px; border: 1px solid var(--border-hover);
-      border-radius: 8px; transition: background 0.18s;
-    }
-    .research-link:hover { background: var(--accent-soft); }
-
-    .section-break {
-      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--text-muted);
-      margin: 44px 0 22px; padding-bottom: 10px;
-      border-bottom: 1px solid var(--border);
-    }
-  </style>
 </head>
 <body>
 
-  <canvas id="game-canvas" aria-hidden="true"></canvas>
+  <canvas id="atom-canvas" aria-hidden="true"></canvas>
   <div id="nav-container"></div>
 
   <div class="page-wrapper">
-    <section class="section" style="padding-top: 60px;">
+    <section class="section" style="padding-top: var(--space-8);">
+      <div class="section-header reveal">
+        <div class="section-label">Research &amp; writing</div>
+        <h1 class="section-title">Published work</h1>
+        <p class="section-sub">As a published author, I was primary author on two papers with Professor Jiasun Li, with a third project in progress.</p>
+      </div>
+
+      <div class="pub-list reveal">
+        <div class="pub-item">
+          <div class="pub-meta"><span>Primary author</span><span>with Prof. Jiasun Li</span><span>Jul – Aug 2025</span></div>
+          <h3>Tokenized Real-World Assets: growth &amp; analysis</h3>
+          <p>Working with a team of three, I helped produce a comprehensive report and analysis of tokenized real-world assets (RWAs) and how they have grown over the past few years — what's behind the surge, and where it may be heading.</p>
+        </div>
+        <div class="pub-item">
+          <div class="pub-meta"><span>Primary author</span><span>with Prof. Jiasun Li</span><span>2025</span></div>
+          <h3>Cryptocurrency exchange valuation &amp; stability</h3>
+          <p>A closer study of the distribution and valuation of current cryptocurrency exchanges — their potential yields, their safety over time, and the percent chance of financial instability and shutdown.</p>
+        </div>
+        <div class="pub-item">
+          <div class="pub-meta"><span>In progress</span></div>
+          <h3>A global crypto-exchange safety index</h3>
+          <p>I'm now building an index of safety designed to describe and score any and all cryptocurrency exchanges worldwide — distilling the previous analysis into a single, comparable measure.</p>
+        </div>
+      </div>
+
+      <hr class="rule" />
 
       <div class="section-header reveal">
-        <div class="section-label">Research</div>
-        <h1 class="section-title">Academic &amp; Lab Work</h1>
-        <p class="section-sub">Research positions, collaborations, and publications.</p>
+        <div class="section-label">Collaboration</div>
+        <h2 class="section-title">How the work happens</h2>
       </div>
-
-      <!-- ── Research Positions ── -->
-      <div class="section-break reveal">Research Positions</div>
-
-      <!-- Copy this card for each lab / research role -->
-      <div class="research-card reveal">
-        <div class="research-card-top">
-          <div>
-            <div class="research-title"><!-- TODO: Lab / project name --></div>
-            <div class="research-org">
-              🏛️ <!-- TODO: Institution name --> &nbsp;·&nbsp; <!-- TODO: Advisor / PI name, if applicable -->
-            </div>
-          </div>
-          <span class="research-dates"><!-- TODO: e.g. Jun 2024 – Present --></span>
-        </div>
-        <p class="research-desc">
-          <!-- TODO: What did you work on? What methods, datasets, or questions?
-               What was produced — a paper, a model, a system, a report? -->
-        </p>
-        <div class="research-links">
-          <!-- Add links as needed: paper, code, poster, etc. Remove unused ones. -->
-          <a class="research-link" href="#">📄 Paper</a>
-          <a class="research-link" href="#">💻 Code</a>
-          <a class="research-link" href="#">📊 Poster</a>
+      <div class="about-text reveal" style="max-width: var(--measure);">
+        <p>I worked closely with <strong>Professor Jiasun Li</strong> and a small research team out of Fairfax, Virginia, learning to take a question from raw data all the way to a written, defensible result. The finance topics were new territory for me — which was the point. The transferable skill is the research process itself: framing a question, gathering and cleaning data, and communicating findings clearly.</p>
+        <p>That same research instinct shows up across my hardware work, too — from characterizing optical tweezers to collecting performance data on Project O-Seal.</p>
+        <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
+          <a class="btn btn-ghost" href="quantum.html">Quantum research</a>
+          <a class="btn btn-ghost" href="../project-pages/o-seal.html">Project O-Seal</a>
         </div>
       </div>
-
-      <div class="research-card reveal">
-        <div class="research-card-top">
-          <div>
-            <div class="research-title"><!-- TODO: Lab / project name --></div>
-            <div class="research-org">🏛️ <!-- TODO: Institution --></div>
-          </div>
-          <span class="research-dates"><!-- TODO: Dates --></span>
-        </div>
-        <p class="research-desc"><!-- TODO: Description --></p>
-        <div class="research-links">
-          <a class="research-link" href="#">📄 Paper</a>
-        </div>
-      </div>
-
-      <!-- ── Programs & Summer Research ── -->
-      <div class="section-break reveal">Programs &amp; Summer Research</div>
-
-      <div class="research-card reveal">
-        <div class="research-card-top">
-          <div>
-            <div class="research-title"><!-- TODO: Program name (e.g. RSI, PRIMES, SURP) --></div>
-            <div class="research-org">🏛️ <!-- TODO: Institution --></div>
-          </div>
-          <span class="research-dates"><!-- TODO: Summer YYYY --></span>
-        </div>
-        <p class="research-desc"><!-- TODO: What did you study / build? With whom? What was the output? --></p>
-        <div class="research-links">
-          <a class="research-link" href="#">📄 Report</a>
-        </div>
-      </div>
-
     </section>
   </div>
 
   <div id="footer-container"></div>
+  <script src="../js/partials.js"></script>
   <script src="../js/site.js"></script>
-  <script src="../js/game.js"></script>
+  <script src="../js/atom-array.js"></script>
 </body>
 </html>

@@ -1,95 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-root="..">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact — Zoeb Izzi</title>
+  <meta name="description" content="Get in touch with Zoeb Izzi — email, phone, LinkedIn, and GitHub." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Inter:wght@300..600&family=JetBrains+Mono:wght@400;500;600&display=swap" />
   <link rel="stylesheet" href="../css/style.css" />
 </head>
 <body>
 
-  <canvas id="game-canvas" aria-hidden="true"></canvas>
+  <canvas id="atom-canvas" aria-hidden="true"></canvas>
   <div id="nav-container"></div>
 
   <div class="page-wrapper">
-    <section class="section" style="padding-top: 60px;">
-
-      <div class="section-header reveal">
-        <div class="section-label">Contact</div>
-        <h1 class="section-title">Get in touch</h1>
-        <p class="section-sub">
-          <!-- TODO: What kinds of conversations do you want to have?
-               Collaborations? Opportunities? Just interesting people? -->
-          Whether you want to collaborate, have a question, or just want to say hi — my inbox is open.
-        </p>
-      </div>
-
-      <div class="contact-grid reveal">
-
-        <div class="contact-info">
-          <p>
-            <!-- TODO: 1–2 sentences expanding on the kinds of things you're excited to hear about.
-                 e.g. "I'm especially interested in talking to people working on X or Y." -->
-            I'm always happy to connect with people working on interesting problems.
-            Feel free to reach out about research, projects, or anything else.
-          </p>
-
-          <div class="contact-links">
-            <a class="contact-link" href="mailto:your@email.com">
-              <span>✉️</span>
-              <!-- TODO: your@email.com -->
-              your@email.com
-            </a>
-            <a class="contact-link" href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener">
-              <span>💼</span>
-              LinkedIn
-            </a>
-            <a class="contact-link" href="https://github.com/yourhandle" target="_blank" rel="noopener">
-              <span>💻</span>
-              GitHub
-            </a>
-            <a class="contact-link" href="https://x.com/yourhandle" target="_blank" rel="noopener">
-              <span>𝕏</span>
-              Twitter / X
-            </a>
-            <!-- Add more: Instagram, YouTube, Substack, etc. -->
-          </div>
+    <section class="section" style="padding-top: var(--space-8);">
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <div class="section-label">Contact</div>
+          <h1 class="section-title" style="margin: 12px 0 18px;">Let's build something.</h1>
+          <p>I'm always up for talking quantum hardware, a wild project idea, or a research collaboration. The fastest way to reach me is email — I read everything.</p>
         </div>
-
-        <form id="contact-form">
-          <div class="form-group">
-            <label for="cf-name">Name</label>
-            <input type="text" id="cf-name" name="name" placeholder="Your name" required />
-          </div>
-          <div class="form-group">
-            <label for="cf-email">Email</label>
-            <input type="email" id="cf-email" name="email" placeholder="you@example.com" required />
-          </div>
-          <div class="form-group">
-            <label for="cf-subject">Subject</label>
-            <input type="text" id="cf-subject" name="subject" placeholder="What's this about?" />
-          </div>
-          <div class="form-group">
-            <label for="cf-msg">Message</label>
-            <textarea id="cf-msg" name="message" placeholder="What's on your mind?" required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">
-            Send Message
-          </button>
-          <p style="font-size:0.75rem; color:var(--text-muted); margin-top:10px; text-align:center; line-height:1.5;">
-            💡 <strong>To activate this form:</strong> sign up at
-            <a href="https://formspree.io" target="_blank" rel="noopener" style="color:var(--accent);">formspree.io</a>,
-            create a form, and replace the form's <code>action</code> attribute with your Formspree endpoint.
-            Or connect to EmailJS / your own backend.
-          </p>
-        </form>
-
+        <div class="contact-links reveal">
+          <a class="contact-link" href="mailto:zoeb.m.izzi@gmail.com"><span class="ci">Email</span> zoeb.m.izzi@gmail.com</a>
+          <a class="contact-link" href="tel:+15715316522"><span class="ci">Phone</span> (571) 531-6522</a>
+          <a class="contact-link" href="https://www.linkedin.com/in/zoeb-izzi" target="_blank" rel="noopener"><span class="ci">LinkedIn</span> /in/zoeb-izzi</a>
+          <a class="contact-link" href="https://github.com/MasterPotter" target="_blank" rel="noopener"><span class="ci">GitHub</span> @MasterPotter</a>
+          <a class="contact-link" href="https://maps.google.com/?q=Herndon,VA" target="_blank" rel="noopener"><span class="ci">Location</span> Herndon, Virginia</a>
+        </div>
       </div>
     </section>
   </div>
 
   <div id="footer-container"></div>
+  <script src="../js/partials.js"></script>
   <script src="../js/site.js"></script>
-  <script src="../js/game.js"></script>
+  <script src="../js/atom-array.js"></script>
 </body>
 </html>

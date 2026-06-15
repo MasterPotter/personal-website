@@ -405,7 +405,7 @@ body.play #game-toggle { bottom: 18px !important; }
 
 /* ── Superposition (site-wide "measure me") ────────────────── */
 /* hidden states live in this layer: above the dot-grid canvas, behind page content */
-.sp-layer { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+.sp-layer { position: absolute; top: 0; left: 0; width: 100%; z-index: 0; pointer-events: none; }
 .sp-mark { position: absolute; transform: translate(-50%, -50%); width: 92px; height: 92px; display: grid; place-items: center; text-align: center; }
 .sp-ghost { grid-area: 1 / 1; font-family: var(--font-display); font-weight: 700; font-size: 2.1rem; color: var(--accent); opacity: .18; animation: spghost 2.8s ease-in-out infinite; }
 @keyframes spghost { 0%,100% { opacity: .08; } 50% { opacity: .34; } }

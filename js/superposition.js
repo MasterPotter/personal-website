@@ -1,11 +1,15 @@
 /* ============================================================
    superposition.js, "measure me", site-wide
-   A magnifying glass follows your cursor on EVERY page. Hidden
-   in the background dot grid are a few of the things Zoeb spends
-   his time on, each sitting in superposition (a flickering ψ).
-   Pass the glass over one and it collapses into a real icon.
-   The lens is pointer-events:none (never blocks the page) and
-   fades out when the cursor goes idle. Inline-SVG icons, no emoji.
+   A magnifying glass follows your cursor on every page. Hidden
+   in the empty parts of the background are a few of the things
+   Zoeb spends his time on, each sitting in superposition (a
+   flickering ψ). Pass the glass over one and it collapses into a
+   real icon, which then fades back out after a few seconds.
+
+   The states are placed in document space, only in spots that
+   don't overlap text or cards, so they never sit behind copy.
+   The lens is pointer-events:none (never blocks the page).
+   Inline-SVG icons, no emoji.
    ============================================================ */
 (function () {
   'use strict';
@@ -26,15 +30,23 @@
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="11" y="3.6" width="8.2" height="4.6" rx="1.4" transform="rotate(45 15.1 5.9)"/><path d="M12.6 9.4 6.6 15.4"/><path d="M4.4 19.6h8.4"/></svg>' }
   ];
 
-  var REVEAL_R = 72;
+  var REVEAL_R = 72;     // how close the lens must get to reveal
+  var SHOW_MS  = 3200;   // how long a revealed icon stays before fading
+  var HALF     = 42;     // half-footprint of a mark, for spacing/clearance
 
-  // background layer (sits above the dot-grid canvas, behind page content)
+  // content selectors a mark must NOT overlap (text, cards, chrome)
+  var OBSTACLES = 'p,h1,h2,h3,h4,h5,h6,a,button,img,li,.card,.work-item,.range-item,' +
+    '.award-item,.quick-facts,.pub-item,.blog-post,.meta-pill,.work-tag,.stat,.mbox,' +
+    '#site-nav,#site-footer,.headshot,.section-label,.section-title,.section-sub,' +
+    '.timeline-content,.q-tool,.contact-link,.nav-logo,.btn';
+
+  // layer scrolls with the document (position: absolute), so marks placed in
+  // empty spots stay in empty spots no matter how far you scroll.
   var layer = document.createElement('div');
   layer.className = 'sp-layer';
   layer.setAttribute('aria-hidden', 'true');
   document.body.appendChild(layer);
 
-  // the magnifying glass, on top of everything, but never blocks clicks
   var lens = document.createElement('div');
   lens.className = 'sp-lens';
   lens.setAttribute('aria-hidden', 'true');
@@ -44,43 +56,88 @@
   var marks = [];
   function dist(ax, ay, bx, by) { var dx = ax - bx, dy = ay - by; return Math.sqrt(dx * dx + dy * dy); }
 
+  function obstacleRects() {
+    var sx = window.scrollX || window.pageXOffset;
+    var sy = window.scrollY || window.pageYOffset;
+    var pad = 16, out = [];
+    var els = document.querySelectorAll(OBSTACLES);
+    for (var i = 0; i < els.length; i++) {
+      var r = els[i].getBoundingClientRect();
+      if (r.width < 1 || r.height < 1) continue;
+      out.push({ l: r.left + sx - pad, t: r.top + sy - pad, r: r.right + sx + pad, b: r.bottom + sy + pad });
+    }
+    return out;
+  }
+
+  function blocked(x, y, rects) {
+    for (var i = 0; i < rects.length; i++) {
+      var o = rects[i];
+      if (x + HALF > o.l && x - HALF < o.r && y + HALF > o.t && y - HALF < o.b) return true;
+    }
+    return false;
+  }
+
   function scatter() {
-    layer.innerHTML = ''; marks = [];
-    var w = window.innerWidth, h = window.innerHeight;
-    var n = Math.max(7, Math.min(11, Math.round(w / 180)));
+    for (var k = 0; k < marks.length; k++) { if (marks[k].timer) clearTimeout(marks[k].timer); marks[k].el.remove(); }
+    marks = [];
+    var rects = obstacleRects();
+    var W = window.innerWidth;
+    var docH = Math.max(document.documentElement.scrollHeight, window.innerHeight);
+    layer.style.height = docH + 'px';
+    var n = Math.max(6, Math.min(10, Math.round(W / 200)));
     var placed = [];
     for (var i = 0; i < n; i++) {
-      var s = STATES[Math.floor(Math.random() * STATES.length)];  /* uniformly random, you can get two of the same */
-      var x, y, t = 0, ok;
-      do {
-        x = 56 + Math.random() * (w - 112);
-        y = 130 + Math.random() * (h - 200);
-        t++; ok = true;
-        for (var p = 0; p < placed.length; p++) { if (dist(placed[p].x, placed[p].y, x, y) < 170) { ok = false; break; } }
-      } while (!ok && t < 60);
+      var x, y, t = 0, ok = false;
+      while (t < 200 && !ok) {
+        t++;
+        x = 60 + Math.random() * (W - 120);
+        y = 110 + Math.random() * (docH - 230);
+        if (blocked(x, y, rects)) continue;
+        ok = true;
+        for (var p = 0; p < placed.length; p++) { if (dist(placed[p].x, placed[p].y, x, y) < 150) { ok = false; break; } }
+      }
+      if (!ok) continue;  // couldn't find a clear spot, skip this one
       placed.push({ x: x, y: y });
+      var s = STATES[Math.floor(Math.random() * STATES.length)];  // uniformly random; duplicates possible
       var el = document.createElement('div');
       el.className = 'sp-mark';
       el.style.left = x + 'px'; el.style.top = y + 'px';
       el.innerHTML = '<span class="sp-ghost">&#968;</span><span class="sp-icon">' + s.svg + '</span><span class="sp-label">' + s.label + '</span>';
       layer.appendChild(el);
-      marks.push({ el: el, x: x, y: y, measured: false });
+      marks.push({ el: el, x: x, y: y, shown: false, cool: false, timer: null });
     }
+  }
+
+  function hide(m) {
+    m.shown = false; m.cool = true;   // stays cool until the cursor leaves, so it won't instantly re-pop
+    m.el.classList.remove('measured');
   }
 
   var idleT;
   function onMove(e) {
-    var x = e.clientX, y = e.clientY;
-    lens.style.left = x + 'px';
-    lens.style.top = y + 'px';
+    var cx = e.clientX, cy = e.clientY;
+    lens.style.left = cx + 'px';
+    lens.style.top = cy + 'px';
     lens.classList.add('show');
     clearTimeout(idleT);
     idleT = setTimeout(function () { lens.classList.remove('show'); }, 1500);
+
+    var dx = (window.scrollX || window.pageXOffset), dy = (window.scrollY || window.pageYOffset);
+    var px = cx + dx, py = cy + dy;   // cursor in document coords
     for (var i = 0; i < marks.length; i++) {
-      var m = marks[i]; if (m.measured) continue;
-      var d = dist(m.x, m.y, x, y);
-      if (d < REVEAL_R) { m.measured = true; m.el.classList.add('measured'); }
-      else m.el.classList.toggle('near', d < REVEAL_R + 44);
+      var m = marks[i];
+      var d = dist(m.x, m.y, px, py);
+      if (d < REVEAL_R) {
+        if (!m.shown && !m.cool) {
+          m.shown = true;
+          m.el.classList.add('measured');
+          if (m.timer) clearTimeout(m.timer);
+          m.timer = (function (mk) { return setTimeout(function () { hide(mk); }, SHOW_MS); })(m);
+        }
+      } else {
+        m.cool = false;  // cursor left, arm it again
+        if (!m.shown) m.el.classList.toggle('near', d < REVEAL_R + 40);
+      }
     }
   }
 
@@ -88,7 +145,9 @@
   window.addEventListener('pointerdown', onMove, { passive: true });
 
   var rT;
-  window.addEventListener('resize', function () { clearTimeout(rT); rT = setTimeout(scatter, 220); }, { passive: true });
+  function reflow() { clearTimeout(rT); rT = setTimeout(scatter, 220); }
+  window.addEventListener('resize', reflow, { passive: true });
+  window.addEventListener('load', reflow);   // re-place once fonts/layout settle
 
   scatter();
 })();

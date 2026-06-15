@@ -3,17 +3,22 @@
    A little curved-corner widget tucked into the bottom-right of
    every page. Click the button to turn it on: it collapses onto
    a random piece (you don't know what's on until you look), and
-   music notes drift up into the screen and fade. No audio yet, 
-   add files for the three pieces to make it actually play.
+   music notes drift up into the screen and fade. Now with working audio!
+
+   DISCLAIMER: The audio tracks used in this widget are for
+   demonstration purposes only. All music rights, recordings,
+   and copyrights belong to their respective owners, performers,
+   and publishers. No copyright infringement is intended.
    ============================================================ */
 (function () {
   'use strict';
   if (!document.body) return;
 
+  // Added 'file' property placeholders for your audio tracks
   var PIECES = [
-    { by: 'Mozart',      name: 'Overture to The Marriage of Figaro' },
-    { by: 'Mendelssohn', name: 'Symphony No. 4, Movement I' },
-    { by: 'Mozart',      name: 'Divertimento in D major, K. 136' }
+    { by: 'Mozart',      name: 'Overture to The Marriage of Figaro', file: '/assets/audio3.mp3' },
+    { by: 'Mendelssohn', name: 'Symphony No. 4, Movement I',         file: '/assets/audio1.mp3' },
+    { by: 'Mozart',      name: 'Divertimento in D major, K. 136',    file: '/assets/audio2.mp3' }
   ];
   var GLYPHS = ['♪', '♫', '♩', '♬']; // single, beamed, quarter, beamed-16th
 
@@ -36,7 +41,8 @@
   var notesEl = box.querySelector('#mbox-notes');
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  var on = false, timer = null, last = -1;
+  // currentAudio keeps track of the HTML5 Audio instance
+  var on = false, timer = null, last = -1, currentAudio = null;
 
   function pick() {
     var i;
@@ -65,22 +71,48 @@
     btn.setAttribute('aria-pressed', 'true');
     btn.setAttribute('aria-label', 'Schrodinger’s music box, on');
     pick();
+
+    // Setup and play the chosen audio track
+    var currentPiece = PIECES[last];
+    if (currentPiece && currentPiece.file) {
+      currentAudio = new Audio(currentPiece.file);
+      currentAudio.loop = true; // Optional: loops the track if it finishes
+      currentAudio.play().catch(function (err) {
+        console.warn("Audio play blocked or file not found:", err);
+      });
+    }
+
     if (!reduce) { spawnNote(); timer = setInterval(spawnNote, 620); }
   }
+
   function turnOff() {
     on = false;
     box.classList.remove('on');
     btn.textContent = '♪';
     btn.setAttribute('aria-pressed', 'false');
     btn.setAttribute('aria-label', 'Schrodinger’s music box, off');
+
+    // Stop and clear the audio track
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio = null;
+    }
+
     if (timer) { clearInterval(timer); timer = null; }
   }
 
   btn.addEventListener('click', function () { on ? turnOff() : turnOn(); });
 
-  // pause the note stream on hidden tabs
+  // Pause the note stream AND the audio on hidden tabs
   document.addEventListener('visibilitychange', function () {
-    if (document.hidden && timer) { clearInterval(timer); timer = null; }
-    else if (on && !timer && !reduce) { timer = setInterval(spawnNote, 620); }
+    if (document.hidden) {
+      if (timer) { clearInterval(timer); timer = null; }
+      if (currentAudio) { currentAudio.pause(); }
+    } else if (on) {
+      if (!timer && !reduce) { timer = setInterval(spawnNote, 620); }
+      if (currentAudio) {
+        currentAudio.play().catch(function(err) { console.warn(err); });
+      }
+    }
   });
 })();

@@ -55,10 +55,10 @@
     s.width = s.height = GR * 2;
     var g = s.getContext('2d');
     var grd = g.createRadialGradient(GR, GR, 0, GR, GR, GR);
-    grd.addColorStop(0.0, 'rgba(200,253,255,1)');
-    grd.addColorStop(0.16, 'rgba(34,211,238,0.95)');
-    grd.addColorStop(0.45, 'rgba(34,211,238,0.30)');
-    grd.addColorStop(1.0, 'rgba(34,211,238,0)');
+    grd.addColorStop(0.0, 'rgba(255,246,219,1)');
+    grd.addColorStop(0.16, 'rgba(245,176,52,0.95)');
+    grd.addColorStop(0.45, 'rgba(245,176,52,0.30)');
+    grd.addColorStop(1.0, 'rgba(245,176,52,0)');
     g.fillStyle = grd;
     g.fillRect(0, 0, GR * 2, GR * 2);
     glow = s;
@@ -161,7 +161,7 @@
     for (var i = 0; i < sites.length; i++) {
       if (sites[i].target && sites[i].occ && Math.random() < 0.8) {
         sites[i].occ = false;
-        burst(sites[i].x, sites[i].y, '90,100,114', 4);
+        burst(sites[i].x, sites[i].y, '150,132,104', 4);
       }
     }
     game.decoh = 1; shake = 10;
@@ -170,7 +170,7 @@
   function complete() {
     game.score++;
     for (var i = 0; i < sites.length; i++) {
-      if (sites[i].target) burst(sites[i].x, sites[i].y, '34,211,238', 5);
+      if (sites[i].target) burst(sites[i].x, sites[i].y, '245,176,52', 5);
     }
     game.level++;
     setupLevel();
@@ -230,7 +230,7 @@
     var well = nearest(e.clientX, e.clientY, SNAP_R, function (s) { return s.target && !s.occ; });
     if (well) {
       well.occ = true;
-      burst(well.x, well.y, '34,211,238', 8);
+      burst(well.x, well.y, '245,176,52', 8);
       beams.push({ ax: src.hx, ay: src.hy, bx: well.x, by: well.y, life: 1 });
       if (targetsLeft() === 0) complete();
     } else {
@@ -283,7 +283,7 @@
       if (game.level >= 2 && lossT > 6000) {
         lossT = 0;
         var lost = nearest(W / 2, H * 0.46, SPACING * 6, function (s) { return s.target && s.occ; });
-        if (lost) { lost.occ = false; burst(lost.x, lost.y, '90,100,114', 4); }
+        if (lost) { lost.occ = false; burst(lost.x, lost.y, '150,132,104', 4); }
       }
     }
   }
@@ -308,9 +308,9 @@
     if (!reduceMQ.matches) {
       ctx.globalAlpha = playing ? 0.05 : 0.5;
       var g = ctx.createLinearGradient(scanX - 60, 0, scanX + 60, 0);
-      g.addColorStop(0, 'rgba(34,211,238,0)');
-      g.addColorStop(0.5, 'rgba(34,211,238,' + (playing ? 0.05 : 0.04) + ')');
-      g.addColorStop(1, 'rgba(34,211,238,0)');
+      g.addColorStop(0, 'rgba(245,176,52,0)');
+      g.addColorStop(0.5, 'rgba(245,176,52,' + (playing ? 0.05 : 0.04) + ')');
+      g.addColorStop(1, 'rgba(245,176,52,0)');
       ctx.fillStyle = g;
       ctx.fillRect(scanX - 60, 0, 120, H);
     }
@@ -320,14 +320,14 @@
       var s = sites[i];
       // faint trap-well marker (defines the lattice)
       ctx.globalAlpha = playing ? 0.5 : 0.14;
-      ctx.fillStyle = 'rgba(79,70,229,1)';
+      ctx.fillStyle = 'rgba(130,103,66,1)';
       ctx.beginPath(); ctx.arc(s.hx, s.hy, 1.1, 0, 6.2832); ctx.fill();
 
       if (s.target && !s.occ) {
         // empty target — pulsing indigo ring (the goal)
         var pulse = 0.5 + 0.5 * Math.sin(clock / 320 + s.phase);
         ctx.globalAlpha = (0.4 + 0.45 * pulse);
-        ctx.strokeStyle = 'rgba(79,70,229,1)';
+        ctx.strokeStyle = 'rgba(60,50,38,1)';
         ctx.lineWidth = 1.6;
         ctx.beginPath(); ctx.arc(s.hx, s.hy, 9 + pulse * 2, 0, 6.2832); ctx.stroke();
       } else if (s.occ) {
@@ -339,14 +339,14 @@
 
     // drag beam + dragged atom
     if (pointer.drag) {
-      ctx.globalAlpha = 0.6; ctx.strokeStyle = 'rgba(34,211,238,1)'; ctx.lineWidth = 1.4;
+      ctx.globalAlpha = 0.6; ctx.strokeStyle = 'rgba(245,176,52,1)'; ctx.lineWidth = 1.4;
       ctx.beginPath(); ctx.moveTo(pointer.drag.hx, pointer.drag.hy); ctx.lineTo(pointer.x, pointer.y); ctx.stroke();
       atom(pointer.x, pointer.y, 0.7, Math.min(1, bright + 0.3));
     }
     // placement beams
     for (i = 0; i < beams.length; i++) {
       var b = beams[i];
-      ctx.globalAlpha = b.life * 0.7; ctx.strokeStyle = 'rgba(34,211,238,1)'; ctx.lineWidth = 1.4;
+      ctx.globalAlpha = b.life * 0.7; ctx.strokeStyle = 'rgba(245,176,52,1)'; ctx.lineWidth = 1.4;
       ctx.beginPath(); ctx.moveTo(b.ax, b.ay); ctx.lineTo(b.bx, b.by); ctx.stroke();
     }
     // particles
@@ -360,9 +360,9 @@
     if (playing) {
       var rx = W / 2, ry = H * 0.46, rad = SPACING * 3.6;
       ctx.globalAlpha = 0.9; ctx.lineWidth = 2.5;
-      ctx.strokeStyle = 'rgba(231,231,226,0.5)';
+      ctx.strokeStyle = 'rgba(130,108,74,0.4)';
       ctx.beginPath(); ctx.arc(rx, ry, rad, 0, 6.2832); ctx.stroke();
-      var col = game.decoh > 0.35 ? '34,211,238' : '244,114,90';
+      var col = game.decoh > 0.35 ? '245,176,52' : '220,86,58';
       ctx.strokeStyle = 'rgba(' + col + ',0.95)';
       ctx.beginPath(); ctx.arc(rx, ry, rad, -1.5708, -1.5708 + 6.2832 * game.decoh); ctx.stroke();
     }

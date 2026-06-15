@@ -6,12 +6,12 @@
    Fonts load via a single @import below (keeps it one place).
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Inter:wght@400..600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..700&family=Inter:wght@400..600&family=JetBrains+Mono:wght@400;500&display=swap');
 
 /* ── Variables ─────────────────────────────────────────────── */
 :root {
   /* Fonts */
-  --font-display: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif;
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
   --font-body:    'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono:    'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 
@@ -41,10 +41,10 @@
   --border-ink:   rgba(255,255,255,0.14);
 
   /* Type scale */
-  --fs-display:  clamp(3.3rem, 7.4vw, 6.4rem);
-  --fs-h1:       clamp(2.5rem, 5vw, 3.9rem);
-  --fs-h2:       clamp(2.05rem, 4vw, 3.1rem);
-  --fs-h3:       1.5rem;
+  --fs-display:  clamp(3.9rem, 8.8vw, 7.8rem);
+  --fs-h1:       clamp(3rem, 5.8vw, 4.7rem);
+  --fs-h2:       clamp(2.35rem, 4.5vw, 3.6rem);
+  --fs-h3:       1.62rem;
   --fs-body-lg:  1.4rem;
   --fs-body:     1.18rem;   /* ~19px */
   --fs-small:    1.02rem;
@@ -150,11 +150,11 @@ img { max-width: 100%; display: block; }
 #game-canvas { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.16; pointer-events: none; }
 #game-score { display: none; }            /* hide the score on content pages */
 body.play #game-score { display: block !important; }
-#game-toggle { bottom: 62px !important; background: rgba(255,253,248,0.85) !important; border: 1px solid var(--border) !important; color: var(--text-muted) !important; font-family: var(--font-body) !important; letter-spacing: 0.02em !important; }
+#game-toggle { bottom: 62px !important; left: 16px !important; right: auto !important; background: rgba(255,253,248,0.85) !important; border: 1px solid var(--border) !important; color: var(--text-muted) !important; font-family: var(--font-body) !important; letter-spacing: 0.02em !important; }
 body.play #game-toggle { bottom: 18px !important; }
 
 #atom-toggle {
-  position: fixed; right: 16px; bottom: 16px; z-index: 90;
+  position: fixed; left: 16px; bottom: 16px; z-index: 90;
   display: inline-flex; align-items: center; gap: 8px;
   font-family: var(--font-body); font-size: 0.78rem; font-weight: 500;
   color: var(--text-muted);
@@ -423,32 +423,39 @@ body.play #game-toggle { bottom: 18px !important; }
 .sp-handle { position: absolute; width: 11px; height: 32px; border-radius: 7px; background: var(--accent-strong); bottom: -20px; right: 8px; transform: rotate(-45deg); transform-origin: top center; }
 @media (prefers-reduced-motion: reduce) { .sp-ghost { animation: none; } }
 
-/* ── Schrödinger's music box (no audio) ────────────────────── */
-.musicbox {
-  position: relative; max-width: 440px; min-height: 178px; cursor: pointer;
-  background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
-  overflow: hidden; transition: border-color .2s, box-shadow .2s; user-select: none;
+/* ── Schrodinger's music box — bottom-right corner widget ──── */
+.mbox { position: fixed; right: 0; bottom: 0; z-index: 85; pointer-events: none; }
+.mbox-panel {
+  pointer-events: auto; position: relative;
+  display: flex; align-items: center; gap: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border); border-right: 0; border-bottom: 0;
+  border-top-left-radius: 72px;
+  padding: 14px 16px 14px 26px;
+  box-shadow: var(--shadow-lg);
+  max-width: 70px; overflow: hidden;
+  transition: max-width .5s ease, padding .5s ease;
 }
-.musicbox:hover, .musicbox:focus-visible { border-color: var(--border-hover); box-shadow: var(--shadow-md); outline: none; }
-.mb-lid { position: absolute; top: 0; left: 0; right: 0; height: 8px; background: var(--accent); transition: opacity .35s; z-index: 2; }
-.musicbox.open .mb-lid { opacity: .65; }
-.mb-face { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; padding: 26px; }
-.mb-closed, .mb-open { grid-area: 1 / 1; display: flex; flex-direction: column; align-items: center; transition: opacity .35s; }
-.mb-open { opacity: 0; pointer-events: none; }
-.musicbox.open .mb-closed { opacity: 0; }
-.musicbox.open .mb-open { opacity: 1; }
-.mb-psi { font-family: var(--font-display); font-weight: 700; font-size: 2.7rem; color: var(--accent); line-height: 1; }
-.mb-hint { font-size: .94rem; color: var(--text-muted); margin-top: 8px; }
-.mb-eq { display: flex; align-items: flex-end; gap: 5px; height: 32px; margin-bottom: 16px; }
-.mb-eq i { width: 6px; height: 8px; background: var(--accent-strong); border-radius: 3px; }
-.musicbox.open .mb-eq i { animation: mbeq .9s ease-in-out infinite; }
-.mb-eq i:nth-child(2) { animation-delay: .12s; }
-.mb-eq i:nth-child(3) { animation-delay: .24s; }
-.mb-eq i:nth-child(4) { animation-delay: .36s; }
-.mb-eq i:nth-child(5) { animation-delay: .48s; }
-@keyframes mbeq { 0%,100% { height: 8px; } 50% { height: 32px; } }
-.mb-piece { display: flex; flex-direction: column; align-items: center; gap: 4px; }
-.mb-by { font-size: .86rem; color: var(--accent-strong); font-weight: 600; }
-.mb-name { font-family: var(--font-display); font-weight: 700; font-size: 1.28rem; color: var(--text); max-width: 32ch; line-height: 1.15; }
-.mb-note { margin-top: 12px; font-size: .82rem; color: var(--text-faint); }
-@media (prefers-reduced-motion: reduce) { .musicbox.open .mb-eq i { animation: none; height: 22px; } }
+.mbox.on .mbox-panel { max-width: 390px; padding-left: 30px; }
+.mbox-btn {
+  flex-shrink: 0; width: 42px; height: 42px; border-radius: 50%;
+  border: 1px solid var(--border); background: var(--bg); color: var(--accent-strong);
+  cursor: pointer; display: grid; place-items: center; font-size: 1.2rem; line-height: 1;
+  transition: background .25s, color .25s, border-color .25s, transform .2s;
+}
+.mbox-btn:hover { transform: scale(1.07); border-color: var(--border-hover); }
+.mbox.on .mbox-btn { background: var(--accent); color: #fff; border-color: var(--accent); }
+.mbox-now { white-space: nowrap; opacity: 0; transition: opacity .4s .12s; }
+.mbox.on .mbox-now { opacity: 1; }
+.mbox-cap { display: block; font-family: var(--font-mono); font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; color: var(--text-faint); }
+.mbox-by { display: block; font-size: .76rem; color: var(--accent-strong); font-weight: 600; }
+.mbox-name { display: block; font-family: var(--font-display); font-weight: 600; font-size: 1.06rem; color: var(--text); line-height: 1.15; }
+.mbox-notes { position: absolute; right: 30px; bottom: 46px; width: 0; height: 0; }
+.mbox-note { position: absolute; right: 0; bottom: 0; color: var(--accent-strong); will-change: transform, opacity; animation: mbflow 3s ease-out forwards; }
+@keyframes mbflow {
+  0%   { opacity: 0; transform: translate(0,0) rotate(0deg); }
+  14%  { opacity: .85; }
+  100% { opacity: 0; transform: translate(var(--dx, -120px), var(--dy, -220px)) rotate(-22deg); }
+}
+@media (prefers-reduced-motion: reduce) { .mbox-note { display: none; } }
+@media (max-width: 600px) { .mbox.on .mbox-panel { max-width: 270px; } }

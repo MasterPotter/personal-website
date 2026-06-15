@@ -1,9 +1,9 @@
 /* ============================================================
-   partials.js — single source of truth for the nav + footer.
+   partials.js, single source of truth for the nav + footer.
    The banner is identical on every page and links to the real
    pages (not in-page anchors). Every link is RELATIVE, resolved
    from a per-page root prefix declared as <html data-root="..">
-   (sub-folder pages) or "." (root pages) — so it works on
+   (sub-folder pages) or "." (root pages), so it works on
    file://, localhost, the Pages subpath, and a custom domain.
    ============================================================ */
 (function () {

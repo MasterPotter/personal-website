@@ -1,15 +1,15 @@
 /* ============================================================
-   atom-array.js — "Optical Tweezer Array"
+   atom-array.js, "Optical Tweezer Array"
    The site's quantum signature: a lattice of softly glowing
    atoms held in trap wells.
 
      • Ambient (default): atoms idle with Brownian jitter +
        twinkle; some wells empty ("defects"); a slow imaging
-       sweep crosses the field. Pure background — never blocks
+       sweep crosses the field. Pure background, never blocks
        the page (pointer-events: none, z-index: -1).
 
      • Play (opt-in via window.AtomArray.play()): "defect-free
-       assembly" — drag reservoir atoms into the empty target
+       assembly", drag reservoir atoms into the empty target
        wells before the array decoheres. Mirrors the real
        neutral-atom QC task Zoeb works on.
 
@@ -324,7 +324,7 @@
       ctx.beginPath(); ctx.arc(s.hx, s.hy, 1.1, 0, 6.2832); ctx.fill();
 
       if (s.target && !s.occ) {
-        // empty target — pulsing indigo ring (the goal)
+        // empty target, pulsing indigo ring (the goal)
         var pulse = 0.5 + 0.5 * Math.sin(clock / 320 + s.phase);
         ctx.globalAlpha = (0.4 + 0.45 * pulse);
         ctx.strokeStyle = 'rgba(60,50,38,1)';

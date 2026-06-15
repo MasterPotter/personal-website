@@ -1,5 +1,5 @@
 /* ============================================================
-   site.js — small shared behaviors (scroll-reveal).
+   site.js, small shared behaviors (scroll-reveal).
    Nav/footer injection + nav behavior live in partials.js.
    The quantum motif lives in atom-array.js.
    ============================================================ */

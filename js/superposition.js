@@ -1,5 +1,5 @@
 /* ============================================================
-   superposition.js — "measure me", site-wide
+   superposition.js, "measure me", site-wide
    A magnifying glass follows your cursor on EVERY page. Hidden
    in the background dot grid are a few of the things Zoeb spends
    his time on, each sitting in superposition (a flickering ψ).
@@ -34,7 +34,7 @@
   layer.setAttribute('aria-hidden', 'true');
   document.body.appendChild(layer);
 
-  // the magnifying glass — on top of everything, but never blocks clicks
+  // the magnifying glass, on top of everything, but never blocks clicks
   var lens = document.createElement('div');
   lens.className = 'sp-lens';
   lens.setAttribute('aria-hidden', 'true');
@@ -50,7 +50,7 @@
     var n = Math.max(7, Math.min(11, Math.round(w / 180)));
     var placed = [];
     for (var i = 0; i < n; i++) {
-      var s = STATES[Math.floor(Math.random() * STATES.length)];  /* uniformly random — you can get two of the same */
+      var s = STATES[Math.floor(Math.random() * STATES.length)];  /* uniformly random, you can get two of the same */
       var x, y, t = 0, ok;
       do {
         x = 56 + Math.random() * (w - 112);

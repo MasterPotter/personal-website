@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" data-root="..">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>On the Docket — Zoeb Izzi</title>
+  <meta name="description" content="Ideas and projects Zoeb Izzi has queued up to start next." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="../css/style.css?v=4" />
+</head>
+<body>
+
+  <canvas id="atom-canvas" aria-hidden="true"></canvas>
+  <div id="nav-container"></div>
+
+  <div class="page-wrapper">
+    <section class="section" style="padding-top: var(--space-8);">
+      <div class="section-header reveal">
+        <a class="back-link" href="projects.html" style="display:inline-flex;gap:8px;text-decoration:none;color:var(--text-muted);font-weight:500;margin-bottom:18px;">← Projects</a>
+        <div class="section-label">On the docket</div>
+        <h1 class="section-title">Things I want to start</h1>
+        <p class="section-sub">A running list of ideas I've queued up. Some of these will move to "in progress"; some won't. We'll see.</p>
+      </div>
+
+      <!-- ════════════════════════════════════════════════════════
+           HOW TO ADD AN IDEA
+           Copy the TEMPLATE block below, paste it at the TOP of the
+           list (newest first), and fill it in. Move an idea to the
+           in-progress page once you actually start it.
+
+           TEMPLATE — copy the next 6 lines:
+
+           <div class="timeline-item">
+             <div class="timeline-date">Idea</div>
+             <div class="timeline-content"><h3>Short title</h3><p>One or two lines on what it is and why.</p></div>
+           </div>
+      ═════════════════════════════════════════════════════════ -->
+
+      <div class="timeline reveal">
+        <!-- newest ideas go at the top -->
+        <div class="timeline-item">
+          <div class="timeline-date">Idea</div>
+          <div class="timeline-content"><h3>A cheaper imaging path for the tweezer array</h3><p>Figure out how to read out atom positions without the expensive camera setup most labs use.</p></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">Idea</div>
+          <div class="timeline-content"><h3>Open-source the field-centric TeleOp</h3><p>Clean up and release the RoadRunner field-centric driving code as a small reusable library.</p></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-date">Idea</div>
+          <div class="timeline-content"><h3>A write-up on in-pipe repair</h3><p>Turn the O-Seal data into a short paper on repairing pipes from the inside.</p></div>
+        </div>
+      </div>
+
+      <p class="section-sub reveal" style="margin-top: 20px;">(These are placeholders to show the format — swap in your own using the template above.)</p>
+    </section>
+  </div>
+
+  <div id="footer-container"></div>
+  <script src="../js/partials.js?v=4"></script>
+  <script src="../js/site.js?v=4"></script>
+  <script src="../js/atom-array.js?v=4"></script>
+</body>
+</html>

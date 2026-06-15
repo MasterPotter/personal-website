@@ -1,41 +1,32 @@
 /* ============================================================
    partials.js — single source of truth for the nav + footer.
-   Markup lives here ONCE and is injected into every page.
-
-   Every link is RELATIVE, resolved from a per-page root prefix
-   declared as <html data-root=".."> (sub-folder pages) or "."
-   (root pages). This works identically on:
-     • file://            (no server — open index.html directly)
-     • localhost          (python3 -m http.server)
-     • project subpath    (masterpotter.github.io/personal-website/)
-     • a custom domain root (zero code change later)
+   The banner is identical on every page and links to the real
+   pages (not in-page anchors). Every link is RELATIVE, resolved
+   from a per-page root prefix declared as <html data-root="..">
+   (sub-folder pages) or "." (root pages) — so it works on
+   file://, localhost, the Pages subpath, and a custom domain.
    ============================================================ */
 (function () {
   'use strict';
 
   var root = document.documentElement.getAttribute('data-root') || '.';
-
-  // Are we on the homepage? If so, nav uses in-page #anchors (smooth
-  // scroll); otherwise anchors point back to the homepage section.
   var file = (location.pathname.split('/').pop() || 'index.html');
-  var onHome = (file === '' || file === 'index.html');
 
-  function sectionHref(hash) {
-    return onHome ? hash : (root + '/index.html' + hash);
-  }
-
-  // [hash, label] — the homepage is the hub; deep pages link from sections.
+  // [path, label]
   var NAV = [
-    ['#quantum',  'Quantum'],
-    ['#work',     'Work'],
-    ['#research', 'Research'],
-    ['#about',    'About'],
-    ['#contact',  'Contact']
+    ['pages/quantum.html',  'Quantum'],
+    ['pages/projects.html', 'Projects'],
+    ['pages/research.html', 'Research'],
+    ['pages/about.html',    'About'],
+    ['pages/contact.html',  'Contact']
   ];
+
+  // pages that should light up the "Projects" tab
+  var PROJECTISH = ['projects.html', 'in-progress.html', 'docket.html', 'o-seal.html', 'swype-ai.html', 'capitalbots.html'];
 
   function navHTML() {
     var items = NAV.map(function (n) {
-      return '<li><a href="' + sectionHref(n[0]) + '">' + n[1] + '</a></li>';
+      return '<li><a href="' + root + '/' + n[0] + '">' + n[1] + '</a></li>';
     }).join('');
     return '' +
       '<nav id="site-nav">' +
@@ -57,21 +48,19 @@
         '</div>' +
         '<div class="footer-links">' +
           '<a href="mailto:zoeb.m.izzi@gmail.com">Email</a>' +
-          // TODO(zoeb): confirm exact LinkedIn URL
-          '<a href="https://www.linkedin.com/in/zoeb-izzi" target="_blank" rel="noopener">LinkedIn</a>' +
+          '<a href="https://www.linkedin.com/in/zoeb-izzi-6457032bb/" target="_blank" rel="noopener">LinkedIn</a>' +
           '<a href="https://github.com/MasterPotter" target="_blank" rel="noopener">GitHub</a>' +
+          '<a href="' + root + '/pages/play.html">Play</a>' +
         '</div>' +
       '</footer>';
   }
 
   function markActive(nav) {
-    if (onHome) return; // homepage active-state handled by scroll, not here
+    var isProject = PROJECTISH.indexOf(file) > -1;
     nav.querySelectorAll('.nav-links a').forEach(function (a) {
-      // deep pages (about.html, research.html, ...) map to their section
       var href = a.getAttribute('href') || '';
-      if (file && href.indexOf(file.replace('.html', '')) > -1 && file !== 'index.html') {
-        a.classList.add('active');
-      }
+      var leaf = href.split('/').pop();
+      if (leaf === file || (isProject && leaf === 'projects.html')) a.classList.add('active');
     });
   }
 
@@ -108,9 +97,6 @@
     wireNav();
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', inject);
-  } else {
-    inject();
-  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', inject);
+  else inject();
 })();

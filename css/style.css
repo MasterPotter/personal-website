@@ -344,8 +344,21 @@ body.play #game-toggle { bottom: 18px !important; }
 /* ── Hero (homepage) ───────────────────────────────────────── */
 .hero { max-width: var(--maxw-wide); margin: 0 auto; padding: clamp(40px, 9vh, 110px) var(--gutter) var(--space-8); min-height: calc(100vh - var(--nav-h)); display: flex; flex-direction: column; justify-content: center; }
 .hero-eyebrow { margin-bottom: var(--space-5); }
-.hero h1 { font-size: var(--fs-display); font-weight: 800; letter-spacing: -0.035em; line-height: 0.98; max-width: 16ch; margin-bottom: var(--space-5); }
-.hero-bio { font-size: var(--fs-body-lg); color: var(--text-muted); max-width: 56ch; line-height: 1.55; margin-bottom: var(--space-6); }
+.hero h1 {
+  /* Change from --fs-display to a more reasonable header size */
+  font-size: var(--fs-h1, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+
+  /* Bump this up so the lines don't overlap when the text wraps */
+  line-height: 1.15;
+
+  /* Increased from 16ch so "Building a quantum computer. As a high schooler." */
+  /* doesn't break into awkward, tiny 1-2 word lines. */
+  max-width: 22ch;
+
+  margin-bottom: var(--space-5);
+}.hero-bio { font-size: var(--fs-body-lg); color: var(--text-muted); max-width: 56ch; line-height: 1.55; margin-bottom: var(--space-6); }
 .hero-bio strong { color: var(--text); font-weight: 600; }
 .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: var(--space-7); }
 .hero-play { display: inline-flex; align-items: flex-start; gap: 8px; margin-bottom: var(--space-8); font-family: var(--font-body); font-size: 0.9rem; color: var(--text-muted); background: none; border: none; cursor: pointer; padding: 4px 0; max-width: 100%; text-align: left; }

@@ -20,7 +20,7 @@
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7c2-3.5 5-3.5 7 0s5 3.5 7 0"/><path d="M2 12c2-3.5 5-3.5 7 0s5 3.5 7 0"/><path d="M2 17c2-3.5 5-3.5 7 0s5 3.5 7 0"/><path d="M18 5l3-3M18 12h4M18 19l3 3"/></svg>' },
     { label: 'Robotics', svg:
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="8" width="15" height="11" rx="2.5"/><path d="M12 4.4V8"/><circle cx="12" cy="3.2" r="1.3"/><circle cx="9.3" cy="13" r="1.25"/><circle cx="14.7" cy="13" r="1.25"/><path d="M9.5 16.6h5"/><path d="M2.5 12v3M21.5 12v3"/></svg>' },
-    { label: 'Quantum theory', svg:
+    { label: 'Quantum theory', svg: // Reverted to original label
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 16l-1.6 4M16 16l1.6 4"/><text x="12" y="12.6" font-size="8" font-family="Georgia, serif" fill="currentColor" stroke="none" text-anchor="middle">&#968;</text></svg>' },
     { label: 'Cooking', svg:
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h13a6.5 6.5 0 0 1-13 0Z"/><path d="M16 12h5"/><path d="M7 5.5c0 1 1 1.2 1 2.2M11 4.8c0 1 1 1.2 1 2.2"/></svg>' },
@@ -142,9 +142,25 @@
           m.shown = true;
 
           // ============================================================
-          // NEW: Select a new random state right at the moment of collapse
+          // NEW: Select weighted random state right at the moment of collapse
           // ============================================================
-          var s = STATES[Math.floor(Math.random() * STATES.length)];
+          var rand = Math.random();
+          var s;
+
+          if (rand < 0.30) {
+            s = STATES[0]; // Quantum optics (30%)
+          } else if (rand < 0.50) {
+            s = STATES[2]; // Quantum theory (20%)
+          } else if (rand < 0.70) {
+            s = STATES[1]; // Robotics (20%)
+          } else if (rand < 0.85) {
+            s = STATES[3]; // Cooking (15%)
+          } else if (rand < 0.95) {
+            s = STATES[5]; // Model UN (10%)
+          } else {
+            s = STATES[4]; // Viola (5%)
+          }
+
           m.iconEl.innerHTML = s.svg;
           m.labelEl.textContent = s.label;
           // ============================================================

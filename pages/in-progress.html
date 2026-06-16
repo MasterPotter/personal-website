@@ -1,94 +1,154 @@
 <!DOCTYPE html>
 <html lang="en" data-root="..">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>In Progress, Zoeb Izzi</title>
-  <meta name="description" content="A running log of what Zoeb Izzi is actively building." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="../css/style.css?v=10" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>In Progress, Zoeb Izzi</title>
+    <meta name="description" content="A running log of what Zoeb Izzi is actively building."/>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link rel="stylesheet" href="../css/style.css?v=10"/>
 </head>
 <body>
 
-  <canvas id="atom-canvas" aria-hidden="true"></canvas>
-  <canvas id="game-canvas" aria-hidden="true"></canvas>
-  <div id="nav-container"></div>
+<canvas id="atom-canvas" aria-hidden="true"></canvas>
+<canvas id="game-canvas" aria-hidden="true"></canvas>
+<div id="nav-container"></div>
 
-  <div class="page-wrapper">
+<div class="page-wrapper">
     <section class="section" style="padding-top: var(--space-8);">
-      <div class="section-header reveal">
-        <a class="back-link" href="projects.html" style="display:inline-flex;gap:8px;text-decoration:none;color:var(--text-muted);font-weight:500;margin-bottom:18px;">← Projects</a>
-        <div class="section-label">In progress</div>
-        <h1 class="section-title">What I'm building right now</h1>
-        <p class="section-sub">A running log, newest notes first. I'll add to these as things move.</p>
-      </div>
-
-      <!-- ════════════════════════════════════════════════════════
-           HOW TO ADD AN UPDATE
-           1. Find the project below (or copy a whole <article> block
-              to start a new one).
-           2. Paste the TEMPLATE entry at the TOP of that project's
-              <div class="timeline"> (newest first).
-           3. Change the date and write your note.
-
-           TEMPLATE entry, copy the next 6 lines:
-
-           <div class="timeline-item">
-             <div class="timeline-date">MON YEAR</div>
-             <div class="timeline-content"><p>What happened / what changed.</p></div>
-           </div>
-      ═════════════════════════════════════════════════════════ -->
-
-      <!-- ── Project: Optical tweezer array ── -->
-      <article class="reveal" style="margin-bottom: var(--space-8);">
-        <h2 style="font-family:var(--font-display);font-weight:700;font-size:1.6rem;margin-bottom:10px;">Optical tweezer array</h2>
-        <div class="project-meta"><span class="meta-pill">Building</span><span class="meta-pill">Quantum</span></div>
-        <div class="timeline">
-          <!-- newest entries go here -->
-          <div class="timeline-item">
-            <div class="timeline-date">Fall 2026</div>
-            <div class="timeline-content"><p>Cleared to start building the system for real in the TJ labs, moving from the bench to a proper setup.</p></div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-date">Summer 2026</div>
-            <div class="timeline-content"><p>First working optical tweezers are assembled and entering their testing phase.</p></div>
-          </div>
+        <div class="section-header reveal">
+            <a class="back-link" href="projects.html"
+               style="display:inline-flex;gap:8px;text-decoration:none;color:var(--text-muted);font-weight:500;margin-bottom:18px;">←
+                Projects</a>
+            <div class="section-label">In progress</div>
+            <h1 class="section-title">What I'm building right now</h1>
+            <p class="section-sub">A running log, newest notes first. I'll add to these as things move.</p>
         </div>
-      </article>
 
-      <!-- ── Project: Crypto-exchange safety index ── -->
-      <article class="reveal" style="margin-bottom: var(--space-8);">
-        <h2 style="font-family:var(--font-display);font-weight:700;font-size:1.6rem;margin-bottom:10px;">Crypto-exchange safety index</h2>
-        <div class="project-meta"><span class="meta-pill">Drafting</span><span class="meta-pill">Research</span></div>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-date">2025</div>
-            <div class="timeline-content"><p>Turning the two papers with Prof. Li into a single index that scores how safe any exchange is.</p></div>
-          </div>
-        </div>
-      </article>
+        <!-- ════════════════════════════════════════════════════════
+             HOW TO ADD AN UPDATE
+             1. Find the project below (or copy a whole <article> block
+                to start a new one).
+             2. Paste the TEMPLATE entry at the TOP of that project's
+                <div class="timeline"> (newest first).
+             3. Change the date and write your note.
 
-      <!-- ── Project: Swype AI ── -->
-      <article class="reveal">
-        <h2 style="font-family:var(--font-display);font-weight:700;font-size:1.6rem;margin-bottom:10px;">Swype AI</h2>
-        <div class="project-meta"><span class="meta-pill">Iterating</span><span class="meta-pill">ML</span></div>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-date">Ongoing</div>
-            <div class="timeline-content"><p>Improving the Kalman filter and the landmark system so gestures track at a higher frame rate.</p></div>
-          </div>
-        </div>
-      </article>
+             TEMPLATE entry, copy the next 6 lines:
+
+             <div class="timeline-item">
+               <div class="timeline-date">MON YEAR</div>
+               <div class="timeline-content"><p>What happened / what changed.</p></div>
+             </div>
+        ═════════════════════════════════════════════════════════ -->
+
+        <!-- ── Project: Optical tweezer array ── -->
+        <article class="reveal" style="margin-bottom: var(--space-8);">
+            <h2 style="font-family:var(--font-display);font-weight:700;font-size:1.6rem;margin-bottom:10px;">Optical
+                quantum computer</h2>
+            <div class="project-meta"><span class="meta-pill">Building</span><span class="meta-pill">Quantum</span>
+            </div>
+            <div class="timeline">
+                <!-- newest entries go here -->
+                <div class="timeline-item">
+                    <div class="timeline-date">June 2026</div>
+                    <div class="timeline-content"><p>Cleared to start building the system for real in the TJ labs,
+                        moving from the paper to the bench. Also, started thinking about a possible chip style
+                    development of the system.</p></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">May 2026</div>
+                    <div class="timeline-content"><p>Finalized designs for CNOT interaction gates and the whole
+                        computer, started paper writing.</p></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">May 2026</div>
+                    <div class="timeline-content"><p>First working optical tweezers are assembled and entering their
+                        testing phase.</p></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">April 2026</div>
+                    <div class="timeline-content"><p>Shifted to laser-based quantum computing, realized that </p></div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">February 2026</div>
+                    <div class="timeline-content"><p>Initial designs made, using single photon generators and SPDC
+                        crystals, along with mirrors to delay CNOT gate actions.</p></div>
+                </div>
+            </div>
+        </article>
+
+        <article class="reveal" style="margin-bottom: var(--space-8);">
+            <h2 style="font-family:var(--font-display);font-weight:700;font-size:1.6rem;margin-bottom:10px;">
+                Making a quantum simulator</h2>
+            <div class="project-meta"><span class="meta-pill">Coding</span><span class="meta-pill">Quantum</span>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">April 2026</div>
+                    <div class="timeline-content"><p>Begun working on a first draft for a possible quantum simulation technology that would
+                        be more intuitive to use and would plug into the quantum computer for easy use.</p></div>
+                </div>
+            </div>
+        </article>
+
+
+        <!-- ── Project: 3D printer head switching capabilities ── -->
+        <article class="reveal" style="margin-bottom: var(--space-8);">
+            <h2 style="font-family:var(--font-display);font-weight:700;font-size:1.6rem;margin-bottom:10px;">
+                3D printer-CNC adapter</h2>
+            <div class="project-meta"><span class="meta-pill">Engineering</span><span class="meta-pill">Design</span>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">May 2026</div>
+                    <div class="timeline-content"><p>Manufactured a V1 from CAD, did NOT work, but I realized that my
+                        sizing and stabilization was horrible and made changes.</p></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">March 2026</div>
+                    <div class="timeline-content"><p>Realized several issues with the calculations and physics in the
+                        systems, redid calculations and designs.</p></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">January 2026</div>
+                    <div class="timeline-content"><p>Started physics calculations for the switching system, began work
+                        on the software to integrate cross-platform.</p></div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2025</div>
+                    <div class="timeline-content"><p>Started thinking about the problem.</p></div>
+                </div>
+            </div>
+        </article>
+
+        <!-- ── Project: Crypto-exchange safety index ── -->
+        <article class="reveal" style="margin-bottom: var(--space-8);">
+            <h2 style="font-family:var(--font-display);font-weight:700;font-size:1.6rem;margin-bottom:10px;">
+                Crypto-exchange safety index</h2>
+            <div class="project-meta"><span class="meta-pill">Drafting</span><span class="meta-pill">Research</span>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">October 2025</div>
+                    <div class="timeline-content"><p>Turning the two papers with Prof. Li into a single index that
+                        scores how safe any exchange is.</p></div>
+                </div>
+            </div>
+        </article>
+
     </section>
-  </div>
+</div>
 
-  <div id="footer-container"></div>
-  <script src="../js/partials.js?v=10"></script>
-  <script src="../js/site.js?v=10"></script>
-  <script src="../js/musicbox.js?v=10"></script>
-  <script src="../js/atom-array.js?v=10"></script>
-  <script src="../js/superposition.js?v=10"></script>
-  <script src="../js/game.js?v=10"></script>
+<div id="footer-container"></div>
+<script src="../js/partials.js?v=10"></script>
+<script src="../js/site.js?v=10"></script>
+<script src="../js/musicbox.js?v=10"></script>
+<script src="../js/atom-array.js?v=10"></script>
+<script src="../js/superposition.js?v=10"></script>
+<script src="../js/game.js?v=10"></script>
 </body>
 </html>

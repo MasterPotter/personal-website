@@ -1,5 +1,5 @@
 /* ============================================================
-   GD-lite v5.4 - Natural Transitions & Ball Ground-Lock Fix
+   GD-lite v5.6 - Transition Grace & Robust Dash Fixes
    ============================================================ */
 
 (function () {
@@ -89,7 +89,10 @@
     dash: {
       fill: '#38BDF8', ring: '#BAE6FD', glow: 'rgba(56,189,248,0.5)',
       symbol: '→', label: 'DASH',
-      action() { speed = baseSpeed * 2.0; setTimeout(() => { if (!dying && !dead) speed = baseSpeed; }, 1000); },
+      action() {
+        dashTimer = 300; // 300 frames = 5 seconds of speed-up at 60fps
+        speed = baseSpeed * 2.0;
+      },
     },
     spider: {
       fill: '#34D399', ring: '#A7F3D0', glow: 'rgba(52,211,153,0.5)',
@@ -140,6 +143,8 @@
   let deathTimer = 0, flashAlpha = 0;
   let reversed = false, reverseTimer = 0;
   let ballSwitched = false;
+  let modeGraceTimer = 0; // Tracks invulnerability frames right after vehicle swaps
+  let dashTimer = 0;      // Tracks active speed boost frames
 
   let obstacles = [], platforms = [], orbs = [], portals = [];
   let particles = [], stars = [], bgSquares = [];
@@ -159,6 +164,8 @@
     dying = false; dead = false; deathTimer = 0; flashAlpha = 0;
     reversed = false; reverseTimer = 0;
     mode = 'cube';
+    modeGraceTimer = 0;
+    dashTimer = 0;
 
     for (let i = 0; i < 14; i++) bgSquares.push(makeBGSq(Math.random() * W));
     stars.length = 0;
@@ -302,7 +309,6 @@
       }
     }
 
-    // FIXED: Added P.onGround condition so you cannot cheese the game by flipping mid-air
     if (mode === 'ball' && P.onGround && !ballSwitched) {
       P.gravFlipped = !P.gravFlipped;
       P.vy = P.gravFlipped ? Math.abs(JUMP_VY) * 0.55 : -Math.abs(JUMP_VY) * 0.55;
@@ -384,16 +390,29 @@
 
     frame++; score++;
 
+    // Tick down transition protection frames
+    if (modeGraceTimer > 0) modeGraceTimer--;
+
+    // Tick down active dash frames and reset when finished
+    if (dashTimer > 0) {
+      dashTimer--;
+      if (dashTimer <= 0 && !reversed) {
+        speed = baseSpeed;
+      }
+    }
+
+    // Natural game difficulty acceleration
     if (frame % 340 === 0 && baseSpeed < 9.0) {
       baseSpeed += 0.15;
-      if (!reversed) speed = baseSpeed;
+      // Only set general speed to baseSpeed if we are not actively in a speed-up dash
+      if (!reversed && dashTimer <= 0) speed = baseSpeed;
     }
 
     if (!reversed && frame > 800 && Math.random() < 0.0003) {
       reversed = true; reverseTimer = 130;
       speed = -baseSpeed * 0.6;
     }
-    if (reversed) { reverseTimer--; if (reverseTimer <= 0) { reversed = false; speed = baseSpeed; } }
+    if (reversed) { reverseTimer--; if (reverseTimer <= 0) { reversed = false; speed = (dashTimer > 0) ? baseSpeed * 2.0 : baseSpeed; } }
 
     /* ── Physics ─────────────────────────────────────────────── */
     const gDir = (mode === 'cube' && P.gravFlipped) ? -1
@@ -422,29 +441,30 @@
 
     /* ── Ground boundary ─────────────────────────────────────── */
     if (P.y + P.h >= groundY) {
+      if ((mode === 'ship' || mode === 'wave') && modeGraceTimer <= 0) {
+        die();
+        return;
+      }
       P.y = groundY - P.h;
-      if (mode === 'ship' || mode === 'wave') { die(); return; }
       P.vy = 0; P.onGround = true;
     }
 
-/* ── Ceiling boundary ────────────────────────────────────── */
-if (P.y <= ceilY) {
+    /* ── Ceiling boundary ────────────────────────────────────── */
+    if (P.y <= ceilY) {
+      if ((mode === 'ship' || mode === 'wave') && modeGraceTimer <= 0) {
+        die();
+        return;
+      }
+      if (mode === 'ball' || P.gravFlipped) {
+        P.y = ceilY;
+        P.vy = 0;
+        P.onGround = true;
+      } else {
+        P.y = ceilY;
+        P.vy = Math.abs(P.vy) * 0.3;
+      }
+    }
 
-  if (mode === 'ship' || mode === 'wave') {
-    die();
-    return;
-  }
-
-  // stick to ceiling when gravity is inverted
-  if (mode === 'ball' || P.gravFlipped) {
-    P.y = ceilY;
-    P.vy = 0;
-    P.onGround = true;
-  } else {
-    P.y = ceilY;
-    P.vy = Math.abs(P.vy) * 0.3;
-  }
-}
     /* ── Rotation ────────────────────────────────────────────── */
     if (mode === 'cube') {
       const spin = reversed ? -5 : 5;
@@ -575,6 +595,7 @@ if (P.y <= ceilY) {
     if (mode === 'cube') {
       P.gravFlipped = false;
     }
+    modeGraceTimer = 32; // Give 32 frames of floor/ceiling leniency
     spawnParts(P.x + P.w / 2, P.y + P.h / 2, 12, modeGlow(0.55), false);
   }
 

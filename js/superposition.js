@@ -34,14 +34,11 @@
   var SHOW_MS  = 3200;   // how long a revealed icon stays before fading
   var HALF     = 42;     // half-footprint of a mark, for spacing/clearance
 
-  // content selectors a mark must NOT overlap (text, cards, chrome)
   var OBSTACLES = 'p,h1,h2,h3,h4,h5,h6,a,button,img,li,.card,.work-item,.range-item,' +
     '.award-item,.quick-facts,.pub-item,.blog-post,.meta-pill,.work-tag,.stat,.mbox,' +
     '#site-nav,#site-footer,.headshot,.section-label,.section-title,.section-sub,' +
     '.timeline-content,.q-tool,.contact-link,.nav-logo,.btn';
 
-  // layer scrolls with the document (position: absolute), so marks placed in
-  // empty spots stay in empty spots no matter how far you scroll.
   var layer = document.createElement('div');
   layer.className = 'sp-layer';
   layer.setAttribute('aria-hidden', 'true');
@@ -96,20 +93,33 @@
         ok = true;
         for (var p = 0; p < placed.length; p++) { if (dist(placed[p].x, placed[p].y, x, y) < 150) { ok = false; break; } }
       }
-      if (!ok) continue;  // couldn't find a clear spot, skip this one
+      if (!ok) continue;
       placed.push({ x: x, y: y });
-      var s = STATES[Math.floor(Math.random() * STATES.length)];  // uniformly random; duplicates possible
+
       var el = document.createElement('div');
       el.className = 'sp-mark';
       el.style.left = x + 'px'; el.style.top = y + 'px';
-      el.innerHTML = '<span class="sp-ghost">&#968;</span><span class="sp-icon">' + s.svg + '</span><span class="sp-label">' + s.label + '</span>';
+
+      // Setup the base DOM structure with empty wrappers for icon and label
+      el.innerHTML = '<span class="sp-ghost">&#968;</span><span class="sp-icon"></span><span class="sp-label"></span>';
       layer.appendChild(el);
-      marks.push({ el: el, x: x, y: y, shown: false, cool: false, timer: null });
+
+      // Store references to the inner elements so we can swap their content on the fly
+      marks.push({
+        el: el,
+        iconEl: el.querySelector('.sp-icon'),
+        labelEl: el.querySelector('.sp-label'),
+        x: x,
+        y: y,
+        shown: false,
+        cool: false,
+        timer: null
+      });
     }
   }
 
   function hide(m) {
-    m.shown = false; m.cool = true;   // stays cool until the cursor leaves, so it won't instantly re-pop
+    m.shown = false; m.cool = true;
     m.el.classList.remove('measured');
   }
 
@@ -123,19 +133,28 @@
     idleT = setTimeout(function () { lens.classList.remove('show'); }, 1500);
 
     var dx = (window.scrollX || window.pageXOffset), dy = (window.scrollY || window.pageYOffset);
-    var px = cx + dx, py = cy + dy;   // cursor in document coords
+    var px = cx + dx, py = cy + dy;
     for (var i = 0; i < marks.length; i++) {
       var m = marks[i];
       var d = dist(m.x, m.y, px, py);
       if (d < REVEAL_R) {
         if (!m.shown && !m.cool) {
           m.shown = true;
+
+          // ============================================================
+          // NEW: Select a new random state right at the moment of collapse
+          // ============================================================
+          var s = STATES[Math.floor(Math.random() * STATES.length)];
+          m.iconEl.innerHTML = s.svg;
+          m.labelEl.textContent = s.label;
+          // ============================================================
+
           m.el.classList.add('measured');
           if (m.timer) clearTimeout(m.timer);
           m.timer = (function (mk) { return setTimeout(function () { hide(mk); }, SHOW_MS); })(m);
         }
       } else {
-        m.cool = false;  // cursor left, arm it again
+        m.cool = false;
         if (!m.shown) m.el.classList.toggle('near', d < REVEAL_R + 40);
       }
     }
@@ -147,7 +166,7 @@
   var rT;
   function reflow() { clearTimeout(rT); rT = setTimeout(scatter, 220); }
   window.addEventListener('resize', reflow, { passive: true });
-  window.addEventListener('load', reflow);   // re-place once fonts/layout settle
+  window.addEventListener('load', reflow);
 
   scatter();
 })();

@@ -1,66 +1,84 @@
 <!DOCTYPE html>
 <html lang="en" data-root="..">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Optical Quantum Computing, Zoeb Izzi</title>
-  <meta name="description" content="Designing and building low-cost optical tweezer arrays for neutral-atom qubits, Zoeb Izzi's headline research." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="../css/style.css?v=10" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Optical Quantum Computing - Zoeb Izzi</title>
+    <meta name="description"
+          content="Designing and building low-cost optical tweezer arrays for neutral-atom qubits, Zoeb Izzi's headline research."/>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link rel="stylesheet" href="../css/style.css?v=10"/>
 </head>
 <body>
 
-  <canvas id="atom-canvas" aria-hidden="true"></canvas>
-  <canvas id="game-canvas" aria-hidden="true"></canvas>
-  <div id="nav-container"></div>
+<canvas id="atom-canvas" aria-hidden="true"></canvas>
+<canvas id="game-canvas" aria-hidden="true"></canvas>
+<div id="nav-container"></div>
 
-  <div class="page-wrapper">
+<div class="page-wrapper">
     <article>
-      <header class="project-hero">
-        <a class="back-link" href="../index.html">← Back home</a>
-        <h1>Building a quantum computer</h1>
-        <div class="project-meta">
-          <span class="meta-pill">Independent research</span>
-          <span class="meta-pill">TJHSST</span>
-          <span class="meta-pill">2025 – Present</span>
+        <header class="project-hero">
+            <a class="back-link" href="../index.html">← Back home</a>
+            <h1>My flagship: building an optical quantum computer</h1>
+            <div class="project-meta">
+                <span class="meta-pill">Independent research</span>
+                <span class="meta-pill">TJHSST</span>
+                <span class="meta-pill">2025 – Present</span>
+            </div>
+            <p class="project-summary">A small, low-cost neutral-atom quantum computer, built from scratch and designed
+                to cost far less than traditional computers so every school can buy one.</p>
+        </header>
+
+        <div class="prose">
+            <h2>The idea</h2>
+            <p>Optical quantum computers encode qubits in the polarization of photons, which tend to not decay and are
+                very easy to change with simple polarization filters and/or half-wave plates. However, photons tend not
+                to interact with each other, which turns away most professionals. I think they need to consider them
+                in a fairer sense, and apply some engineering logic to that physics mindset.</p>
+            <p>However, you have to deal with classical elements of lasers. Overcoming that has been the biggest
+                challenge - to take something inherently classical and convert it into something quantum.</p>
+
+            <h2>What I've built</h2>
+            <ul>
+                <li>I've independently designed <strong>atomic traps for rubidium and cesium</strong>.</li>
+                <li>I've helped build <strong>functional optical tweezers</strong> that have completed experimental testing
+                    phases and are waiting to be used in the TJ labs.
+                </li>
+                <li>And, most importantly, I've designed my own version of an <strong>optical quantum computer</strong>, tuned to stay financially
+                    practical for high schools and small universities, yet large enough to process real projects and
+                    code that would otherwise take hours on classical computers.
+                </li>
+            </ul>
+
+            <h2>Foundations</h2>
+            <p>I studied <strong>Electrodynamics &amp; Quantum Physics</strong> under Mr. Mark Hannum, alongside a
+                university-level math and physics load, AP Physics C (Mechanics and E&amp;M), Multivariable Calculus,
+                and Advanced Mathematical Techniques.</p>
+            <p>For the fun of it, I sat the <strong>Quantum Mechanics Conceptual Assessment (QMCA)</strong>, usually given to
+                upper-level undergraduates and early PhD students, just to see where I stood, and I came out nearly 7% above
+                their average.</p>
+
+            <h2>This fall</h2>
+            <p>I've received approval to begin <strong>constructing a quantum computer in the TJHSST labs</strong> this
+                coming fall, the next step in turning these benchtop pieces into a working machine.</p>
+
+            <h2>Tools</h2>
+            <p>Quantum simulation in <strong>PennyLane, Qiskit, and Nighthawk</strong>; CAD in <strong>Fusion 360 and
+                Inventor</strong>; and tight-tolerance parts produced on CNC machines and both high- and low-end 3-D
+                printers.</p>
+
+            <p><a href="contact.html">Wanna talk about anything at all? Get in touch →</a></p>
         </div>
-        <p class="project-summary">A small, low-cost neutral-atom quantum computer, built from scratch, down to the optical tweezers that hold its qubits.</p>
-      </header>
-
-      <div class="prose">
-        <h2>The idea</h2>
-        <p>Neutral-atom quantum computers hold individual atoms in tightly focused beams of laser light, <strong>optical tweezers</strong>, and use those atoms as qubits. It's one of the most promising routes to scalable quantum hardware, and also one of the most demanding: the optics, vacuum, and control all have to come together with extraordinary precision.</p>
-        <p>That difficulty is most of the appeal. Building the stack myself, on a high-school budget, has taught me a lot about why neutral-atom computing is so hard, and why it's worth doing anyway.</p>
-
-        <h2>What I've built</h2>
-        <ul>
-          <li>Independently designed <strong>atomic traps for rubidium and cesium</strong>.</li>
-          <li>Built <strong>functional optical tweezers</strong> that are now entering their experimental testing phase.</li>
-          <li>Designed my own version of an <strong>optical quantum computer</strong>, tuned to stay financially practical for high schools and small universities, yet large enough to process real projects and code.</li>
-        </ul>
-
-        <h2>Foundations</h2>
-        <p>I studied <strong>Electrodynamics &amp; Quantum Physics</strong> under Mr. Mark Hannum, alongside a university-level math and physics load, AP Physics C (Mechanics and E&amp;M), Multivariable Calculus, and Advanced Mathematical Techniques.</p>
-        <p>Out of curiosity I sat the <strong>Quantum Mechanics Conceptual Survey (QMCS)</strong>, usually given to upper-level undergraduates and early PhD students, just to see where I stood. I came out a little above the typical average, which I was happy with.</p>
-
-        <h2>This fall</h2>
-        <p>I've received approval to begin <strong>constructing a quantum computer in the TJHSST labs</strong> this coming fall, the next step in turning these benchtop pieces into a working machine.</p>
-
-        <h2>Tools</h2>
-        <p>Quantum simulation in <strong>PennyLane, Qiskit, and Nighthawk</strong>; CAD in <strong>Fusion 360 and Inventor</strong>; and tight-tolerance parts produced on CNC machines and both high- and low-end 3-D printers.</p>
-
-        <p><a href="contact.html">Want to talk quantum hardware? Get in touch →</a></p>
-      </div>
     </article>
-  </div>
+</div>
 
-  <div id="footer-container"></div>
-  <script src="../js/partials.js?v=10"></script>
-  <script src="../js/site.js?v=10"></script>
-  <script src="../js/musicbox.js?v=10"></script>
-  <script src="../js/atom-array.js?v=10"></script>
-  <script src="../js/superposition.js?v=10"></script>
-  <script src="../js/game.js?v=10"></script>
+<div id="footer-container"></div>
+<script src="../js/partials.js?v=10"></script>
+<script src="../js/site.js?v=10"></script>
+<script src="../js/musicbox.js?v=10"></script>
+<script src="../js/atom-array.js?v=10"></script>
+<script src="../js/superposition.js?v=10"></script>
+<script src="../js/game.js?v=10"></script>
 </body>
 </html>

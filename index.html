@@ -21,21 +21,29 @@
   <div class="page-wrapper">
 
     <!-- ── Hero (brief summary) ────────────────────────────── -->
-    <header class="hero">
+<header class="hero">
       <div class="hero-eyebrow eyebrow">Hi, I'm Zoeb</div>
       <h1>Building quantum computers. <br><span class="accent-q">In high school</span>.</h1>
       <p class="hero-bio">
         I'm a high-schooler in Northern Virginia, and I spend an unreasonable amount of my free time building and thinking about
-        quantum stuffs in my school's lab. I tinker with a handful of other things too; the pages up top have the details.
+        quantum concepts and projects in my school's lab. I tinker with a handful of other things too; the pages up top have the details.
       </p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="pages/projects.html">What I work on <span class="btn-arrow">→</span></a>
         <a class="btn btn-ghost" href="pages/about.html">More about me</a>
       </div>
-      <p class="hero-play"><span class="tri">✦</span> Move your cursor around; a few aspects of who I am are hidden in the dots. Can you find all 6?</p>
-    </header>
 
-    <!-- ── Explore (links to the real pages) ───────────────── -->
+      <div style="position: relative; min-height: 4.5em; margin-top: var(--space-4, 20px);">
+        <p class="hero-play" style="margin: 0;">
+          <span class="tri">✦</span> Move your cursor around; a few aspects of who I am are hidden in the dots.
+          <button id="hint-button" style="background: none; border: none; color: inherit; font: inherit; cursor: pointer; padding: 0; display: inline;">Can you find all 6?</button>
+        </p>
+
+        <p id="hint-text" class="tri" style="position: absolute; bottom: 0; left: 0; width: 100%; margin: 0; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; font-style: italic; color: var(--accent-q, #888);">
+          Hint: Quantum Optics, Quantum Theory, Robotics, Viola, Cooking, and Model UN!
+        </p>
+      </div>
+    </header>    <!-- ── Explore (links to the real pages) ───────────────── -->
     <section class="section" style="padding-top: var(--space-7);">
       <div class="section-header reveal">
         <div class="section-label">Have a look around</div>
@@ -79,5 +87,12 @@
   <script src="js/atom-array.js?v=10"></script>
   <script src="js/superposition.js?v=10"></script>
   <script src="js/game.js?v=10"></script>
-</body>
+<script>
+    document.getElementById('hint-button').addEventListener('click', function() {
+      const hint = document.getElementById('hint-text');
+      // Smoothly transition the visibility instead of breaking the layout
+      hint.style.opacity = '1';
+      hint.style.visibility = 'visible';
+    });
+  </script></body>
 </html>

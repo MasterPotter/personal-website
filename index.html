@@ -1,92 +1,100 @@
 <!DOCTYPE html>
 <html lang="en" data-root=".">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zoeb Izzi</title>
-  <meta name="description" content="Zoeb Izzi, a high-schooler in Northern Virginia who spends an unreasonable amount of time on optical quantum computing, plus a few other things." />
-  <meta property="og:title" content="Zoeb Izzi" />
-  <meta property="og:description" content="High-schooler in Northern Virginia working on optical quantum computing, and a few other things." />
-  <meta property="og:type" content="website" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="css/style.css?v=10" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Zoeb Izzi</title>
+    <meta name="description"
+          content="Zoeb Izzi, a high-schooler in Northern Virginia who spends an unreasonable amount of time on optical quantum computing, plus a few other things."/>
+    <meta property="og:title" content="Zoeb Izzi"/>
+    <meta property="og:description"
+          content="High-schooler in Northern Virginia working on optical quantum computing, and a few other things."/>
+    <meta property="og:type" content="website"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link rel="stylesheet" href="css/style.css?v=10"/>
 </head>
 <body>
 
-  <canvas id="atom-canvas" aria-hidden="true"></canvas>
-  <canvas id="game-canvas" aria-hidden="true"></canvas>
-  <div id="nav-container"></div>
+<canvas id="atom-canvas" aria-hidden="true"></canvas>
+<canvas id="game-canvas" aria-hidden="true"></canvas>
+<div id="nav-container"></div>
 
-  <div class="page-wrapper">
+<div class="page-wrapper">
 
     <!-- ── Hero (brief summary) ────────────────────────────── -->
-<header class="hero">
-      <div class="hero-eyebrow eyebrow">Hi, I'm Zoeb</div>
-      <h1>Building quantum computers. <br><span class="accent-q">In high school</span>.</h1>
-      <p class="hero-bio">
-        I'm a high-schooler in Northern Virginia, and I spend an unreasonable amount of my free time building and thinking about
-        quantum concepts and projects in my school's lab. I tinker with a handful of other things too; the pages up top have the details.
-      </p>
-      <div class="hero-cta">
-        <a class="btn btn-primary" href="pages/projects.html">What I work on <span class="btn-arrow">→</span></a>
-        <a class="btn btn-ghost" href="pages/about.html">More about me</a>
-      </div>
-
-      <div style="position: relative; min-height: 4.5em; margin-top: var(--space-4, 20px);">
-        <p class="hero-play" style="margin: 0;">
-          <span class="tri">✦</span> Move your cursor around; a few aspects of who I am are hidden in the dots.
-          <button id="hint-button" style="background: none; border: none; color: inherit; font: inherit; cursor: pointer; padding: 0; display: inline;">Can you find all 6?</button>
+    <header class="hero">
+        <div class="hero-eyebrow eyebrow">Hi, I'm Zoeb</div>
+        <h1>Building quantum computers. <br><span class="accent-q">In high school</span>.</h1>
+        <p class="hero-bio">
+            I'm a high-schooler in Northern Virginia, and I spend an unreasonable amount of my free time building and
+            thinking about quantum concepts and projects in my school's lab. I tinker with a handful of other things
+            too; the pages up top have the details.
         </p>
+        <div class="hero-cta">
+            <a class="btn btn-primary" href="pages/projects.html">What I work on <span class="btn-arrow">→</span></a>
+            <a class="btn btn-ghost" href="pages/about.html">More about me</a>
+        </div>
 
-        <p id="hint-text" class="tri" style="position: absolute; bottom: 0; left: 0; width: 100%; margin: 0; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; font-style: italic; color: var(--accent-q, #888);">
-          Hint: Quantum Optics, Quantum Theory, Robotics, Viola, Cooking, and Model UN!
-        </p>
-      </div>
+        <div style="position: relative; min-height: 4.5em; margin-top: var(--space-4, 20px);">
+            <p class="hero-play" style="margin: 0;">
+                <span class="tri">✦</span> Move your cursor around; a few aspects of who I am are hidden in the dots.
+                <button id="hint-button"
+                        style="background: none; border: none; color: inherit; font: inherit; cursor: pointer; padding: 0; display: inline;">
+                    Can you find all 6?
+                </button>
+            </p>
+
+            <p id="hint-text" class="tri"
+               style="position: absolute; bottom: 0; left: 0; width: 100%; margin: 0; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; font-style: italic; color: var(--accent-q, #888);">
+                Hint: Quantum Optics, Quantum Theory, Robotics, Viola, Cooking, and Model UN!
+            </p>
+        </div>
     </header>    <!-- ── Explore (links to the real pages) ───────────────── -->
     <section class="section" style="padding-top: var(--space-7);">
-      <div class="section-header reveal">
-        <div class="section-label">Have a look around</div>
-        <h2 class="section-title">Some more info</h2>
-      </div>
-      <div class="card-grid reveal">
-        <a class="card" href="pages/quantum.html">
-          <div class="card-tag">Quantum</div>
-          <h3>Building a quantum computer</h3>
-          <p>The main thing I work on, a small-scale optical quantum computer, inspired by my work on an optical tweezer system.</p>
-          <span class="card-link">Take a look →</span>
-        </a>
-        <a class="card" href="pages/projects.html">
-          <div class="card-tag">Projects</div>
-          <h3>What I've built &amp; what's next</h3>
-          <p>Finished projects, plus living logs of what I'm building now and what's on the docket.</p>
-          <span class="card-link">Browse projects →</span>
-        </a>
-        <a class="card" href="pages/research.html">
-          <div class="card-tag">Research</div>
-          <h3>Papers &amp; writing</h3>
-          <p>A couple of papers I worked on with a professor, with more in progress.</p>
-          <span class="card-link">Read more →</span>
-        </a>
-        <a class="card" href="pages/about.html">
-          <div class="card-tag">About</div>
-          <h3>A bit about me</h3>
-          <p>Where I'm from, what I'm studying, and the rest of what I get up to.</p>
-          <span class="card-link">Say hello →</span>
-        </a>
-      </div>
+        <div class="section-header reveal">
+            <div class="section-label">Have a look around</div>
+            <h2 class="section-title">Some more info</h2>
+        </div>
+        <div class="card-grid reveal">
+            <a class="card" href="pages/quantum.html">
+                <div class="card-tag">Quantum</div>
+                <h3>Building a quantum computer</h3>
+                <p>The main thing I work on, a small-scale optical quantum computer, inspired by my work on an optical
+                    tweezer system.</p>
+                <span class="card-link">Take a look →</span>
+            </a>
+            <a class="card" href="pages/projects.html">
+                <div class="card-tag">Projects</div>
+                <h3>What I've built &amp; what's next</h3>
+                <p>Finished projects, plus living logs of what I'm building now and what's on the docket.</p>
+                <span class="card-link">Browse projects →</span>
+            </a>
+            <a class="card" href="pages/research.html">
+                <div class="card-tag">Research</div>
+                <h3>Papers &amp; writing</h3>
+                <p>A couple of papers I worked on with a professor, with more in progress.</p>
+                <span class="card-link">Read more →</span>
+            </a>
+            <a class="card" href="pages/about.html">
+                <div class="card-tag">About</div>
+                <h3>A bit about me</h3>
+                <p>Where I'm from, what I'm studying, and the rest of what I get up to.</p>
+                <span class="card-link">Say hello →</span>
+            </a>
+        </div>
     </section>
 
-  </div><!-- /.page-wrapper -->
+</div><!-- /.page-wrapper -->
 
-  <div id="footer-container"></div>
+<div id="footer-container"></div>
 
-  <script src="js/partials.js?v=10"></script>
-  <script src="js/site.js?v=10"></script>
-  <script src="js/musicbox.js?v=10"></script>
-  <script src="js/atom-array.js?v=10"></script>
-  <script src="js/superposition.js?v=10"></script>
-  <script src="js/game.js?v=10"></script>
+<script src="js/partials.js?v=10"></script>
+<script src="js/site.js?v=10"></script>
+<script src="js/musicbox.js?v=10"></script>
+<script src="js/atom-array.js?v=10"></script>
+<script src="js/superposition.js?v=10"></script>
+<script src="js/game.js?v=10"></script>
 <script>
     document.getElementById('hint-button').addEventListener('click', function() {
       const hint = document.getElementById('hint-text');
@@ -94,5 +102,6 @@
       hint.style.opacity = '1';
       hint.style.visibility = 'visible';
     });
-  </script></body>
+</script>
+</body>
 </html>
